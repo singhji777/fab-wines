@@ -1,0 +1,19 @@
+{
+  "name": "fab-wines",
+  "version": "1.0.0",
+  "description": "Fab Wines storefront, API and owner dashboard (Express + MongoDB)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node server.js --seed",
+    "seed:reset": "node server.js --reset-catalogue",
+    "go": "node server.js --open"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "mongodb": "^7.8.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
