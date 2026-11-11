@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" data-type="product" data-radius="soft" data-buttons="block" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fab Wines: wine delivered to your door</title>
+<meta name="description" content="Fab Wines sells 19 reds, whites, rosés and ports from ₹3,200. Orders ship within 24 hours and delivery is free over ₹5,000.">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="product">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Figtree:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #e5e1d8; --p-surface: #dad5ca; --p-ink: #2a1d17; --p-muted: #65564c;
+  --p-accent: #456f3a; --p-accent-ink: #ffffff; --p-action: #456f3a; --p-action-ink: #ffffff;
+  --p-inv-bg: #2a1d17; --p-inv-surface: #352822; --p-inv-ink: #e5e1d8; --p-inv-muted: #9e968e;
+  --p-inv-accent: #e5e1d8; --p-inv-accent-ink: #2a1d17; --p-inv-action: #e5e1d8; --p-inv-action-ink: #2a1d17;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-text: "Figtree", system-ui, sans-serif;
+  --display-weight: 400;
+  --display-tracking: -0.02em;
+  --display-tracking-xl: -0.028em;
+  --display-axes: 'SOFT' 30, 'WONK' 0;
+}
+</style>
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
+<script src="assets/backgrounds/backgrounds.js"></script>
+<!-- page CSS: only inside a visual -->
+<style>
+  /* range: every bottle one size on one backdrop, centred in its tile (shown at 1.2x its file at most) */
+  .tile__media { display: grid; place-items: center; }
+  .tile__media > img.cut { width: auto; height: 300px; max-width: 80%; object-fit: contain; padding: 0; }
+  .tile__head > .tile__name { font: 500 var(--t-card)/1.3 var(--font-text); letter-spacing: -0.01em; margin: 0; }
+  /* a set of bottles drawn as one picture: standing in a row, centred in their column */
+  .bottle-set { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); height: 100%; min-height: 540px; padding: var(--s-6) var(--s-6); }
+  .bottle-set img { width: auto; flex: none; height: clamp(190px, 24vw, 330px); }
+  #bundle .bottle-set img { height: clamp(220px, 27vw, 330px); }
+  #bundle .rows > li:last-child .rows__value { font-weight: 500; }
+  .rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-small); }
+  /* questions: the matching icon beside each */
+  .faq__item { grid-template-columns: 32px minmax(0, 1fr); column-gap: var(--s-4); }
+  .faq__item > img { grid-row: 1 / span 2; width: 28px; height: 28px; margin-top: 2px; }
+  .faq__item > :not(img) { grid-column: 2; }
+  /* the name across the closing row has room for Fraunces' tall ascenders */
+  .close__word { line-height: 1.04; }
+  @media (min-width: 640px) and (max-width: 1023px) { #range .tile--portrait { --tile-ratio: 3 / 2; } #range .tile__media > img.cut { height: 190px; } }
+  @media (max-width: 639px) { #range .tile--portrait { --tile-ratio: 1 / 1; } #range .tile__media > img.cut { height: 130px; } #range h2 .muted { display: none; } }
+</style>
+</head>
+<body>
+<!-- type: product (an online wine shop: nothing happens at a door; site-kind other)
+     deal: hero product (the three Tuscan cut-outs on the stage), nav nav-split (no panel), footer footer-columns, close close-word, rhythm brand-band (the bundle section), buttons block, mark initial,
+           palette green-mat-chocolate, pairing fraunces / Figtree, radius soft; grounds, effects, moments, scenes: none (kind other)
+     plan (screens at 1440x900):
+       hero      1  the object whole (n1 n2 n3 on the stage; three hotspots)                          object
+       range     2  line-up: eight b-series cut-outs, two groups of four on span-3 (.g2)              line-up
+       bundle    1  brand band, split 6/6: ruled price list left, three cut-outs right                  object (2 of 3)
+       pairing   1  split 6/6: ruled list of five bottles with dishes left, the five bottles right    object (3 of 3)
+       faq       1  split 6/6: heading left, five open answers right, a matching icon each           list + icons
+       (a delivery diagram section was dropped: the hero, the questions and the footer already say it)
+       closing   1  close-word: the heading, the main action, the name across the wrap; footer-columns type
+     brief gaps (report): no shop address or hours, no lifestyle photographs (the library holds none for wine), the client's own photographs are 250 px tall except the three Tuscan bottles -->
+
+<header class="nav nav--split">
+  <div class="wrap nav__bar">
+    <a class="nav__logo" href="#top"><span class="mark mark--initial" aria-hidden="true">F</span>Fab Wines</a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="#range">Wines</a></div>
+      <div class="nav__item"><a class="nav__link" href="#bundle">Three bottles</a></div>
+      <div class="nav__item"><a class="nav__link" href="#pairing">Pairing</a></div>
+      <div class="nav__item"><a class="nav__link" href="#faq">Questions</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="btn btn--primary" href="#range">Order wine</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero hero--product" aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text hero__in">
+      <div class="hero__head">
+        <div>
+          <h1 id="hero-h">Wine delivered to your door</h1>
+          <p class="hero__lead">Nineteen reds, whites, rosés and ports from ₹3,200. Orders ship within 24 hours and delivery is free over ₹5,000.</p>
+        </div>
+        <div class="btn-row"><a class="btn btn--primary" href="#range">Order wine<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#bundle">See bundle prices</a></div>
+      </div>
+      <div class="hero__stage">
+        <img class="is-cutout" src="assets/img/hero-tuscan.webp" width="1447" height="640" alt="Ornellaia 2017, Sassicaia 2018 and Tignanello 2018 standing side by side" fetchpriority="high" data-source="client" data-subject="product">
+        <div class="ly-spot" style="--x: 14.5%; --y: 62%">
+          <button type="button" aria-label="About Ornellaia"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+          <div class="ly-spot__card" role="note"><strong>Ornellaia 2017</strong>Bolgheri red, 14.5%. Beef short rib, truffle dishes. ₹24,500.</div>
+        </div>
+        <div class="ly-spot" style="--x: 50%; --y: 62%">
+          <button type="button" aria-label="About Sassicaia"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+          <div class="ly-spot__card" role="note"><strong>Sassicaia 2018</strong>Tuscan red, 13.5%. Roast lamb, aged cheese. ₹28,500.</div>
+        </div>
+        <div class="ly-spot ly-spot--left" style="--x: 85.5%; --y: 62%">
+          <button type="button" aria-label="About Tignanello"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+          <div class="ly-spot__card" role="note"><strong>Tignanello 2018</strong>Chianti Classico red, 14%. Grilled steak, tomato pasta. ₹14,500.</div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section g2" id="range" aria-labelledby="range-h">
+    <div class="wrap">
+      <div class="group">
+        <div class="section-head">
+          <h2 id="range-h">Wines. <span class="muted">Reds, whites, rosé and port, every bottle 750 ml and priced below its list price.</span></h2>
+        </div>
+        <div class="grid">
+          <article class="tile tile--portrait span-3">
+            <div class="tile__media"><img class="cut" src="assets/img/b07.webp" width="67" height="250" alt="Chateau Saint-Andre Corbin 2023, a red Bordeaux" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+            <div class="tile__head"><p class="tile__name">Chateau Saint-Andre Corbin</p><span class="tile__price">₹3,200</span></div>
+            <p class="tile__facts">Red · France · 2023 · 13.5%</p>
+          </article>
+          <article class="tile tile--portrait span-3">
+            <div class="tile__media"><img class="cut" src="assets/img/b05.webp" width="80" height="250" alt="Dobbes Grand Assemblage 2022, an Oregon pinot noir" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+            <div class="tile__head"><p class="tile__name">Dobbes Grand Assemblage</p><span class="tile__price">₹3,800</span></div>
+            <p class="tile__facts">Red · Oregon · 2022 · 13.5%</p>
+          </article>
+          <article class="tile tile--portrait span-3">
+            <div class="tile__media"><img class="cut" src="assets/img/b02.webp" width="71" height="250" alt="Vajra Barolo Albe 2022, an Italian nebbiolo" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+            <div class="tile__head"><p class="tile__name">Vajra Barolo Albe</p><span class="tile__price">₹5,400</span></div>
+            <p class="tile__facts">Red · Italy · 2022 · 14%</p>
+          </article>
+          <article class="tile tile--portrait span-3">
+            <div class="tile__media"><img class="cut" src="assets/img/b04.webp" width="93" height="250" alt="Graham's 20 Year Tawny port" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+            <div class="tile__head"><p class="tile__name">Graham's 20 Year Tawny</p><span class="tile__price">₹9,800</span></div>
+            <p class="tile__facts">Port · Portugal · 20 years · 20%</p>
+          </article>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="tile tile--portrait span-3">
+          <div class="tile__media"><img class="cut" src="assets/img/b08.webp" width="77" height="250" alt="Cloudy Bay Sauvignon Blanc 2025" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+          <div class="tile__head"><p class="tile__name">Cloudy Bay Sauvignon Blanc</p><span class="tile__price">₹3,600</span></div>
+          <p class="tile__facts">White · New Zealand · 2025 · 13%</p>
+        </article>
+        <article class="tile tile--portrait span-3">
+          <div class="tile__media"><img class="cut" src="assets/img/b12.webp" width="79" height="250" alt="Whispering Angel Rosé 2025" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+          <div class="tile__head"><p class="tile__name">Whispering Angel Rosé</p><span class="tile__price">₹3,900</span></div>
+          <p class="tile__facts">Rosé · France · 2025 · 13%</p>
+        </article>
+        <article class="tile tile--portrait span-3">
+          <div class="tile__media"><img class="cut" src="assets/img/b15.webp" width="74" height="250" alt="William Fevre Chablis 2023" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+          <div class="tile__head"><p class="tile__name">William Fevre Chablis</p><span class="tile__price">₹4,800</span></div>
+          <p class="tile__facts">White · France · 2023 · 12.5%</p>
+        </article>
+        <article class="tile tile--portrait span-3">
+          <div class="tile__media"><img class="cut" src="assets/img/b01.webp" width="74" height="250" alt="Grand Napa Chardonnay 2025" loading="lazy" decoding="async" data-source="client" data-subject="product"></div>
+          <div class="tile__head"><p class="tile__name">Grand Napa Chardonnay</p><span class="tile__price">₹6,200</span></div>
+          <p class="tile__facts">White · California · 2025 · 13.5%</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section ground-brand" id="bundle" aria-labelledby="bundle-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="bundle-h">Any three bottles, ten percent off. <span class="muted">The saving comes off in your cart, with no code to enter.</span></h2>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">Faust Cabernet</span><span class="rows__value">₹7,200</span></li>
+          <li><span class="rows__name">Pine Ridge Cabernet</span><span class="rows__value">₹6,600</span></li>
+          <li><span class="rows__name">Chateau Buena Vista Cabernet</span><span class="rows__value">₹5,800</span></li>
+          <li><span class="rows__name">Ten percent off</span><span class="rows__value">−₹1,960</span></li>
+          <li><span class="rows__name">Three bottles</span><span class="rows__value">₹17,640</span></li>
+        </ul>
+        <p style="margin-top: var(--s-6)"><a class="link" href="#range">Pick three bottles</a></p>
+      </div>
+      <div class="span-6 start-7">
+        <div class="bottle-set" role="img" aria-label="Faust Cabernet 2023, Pine Ridge Cabernet 2023 and Chateau Buena Vista Cabernet 2022 standing in a row">
+          <img src="assets/img/b11.webp" width="74" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+          <img src="assets/img/b14.webp" width="74" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+          <img src="assets/img/b13.webp" width="73" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pairing" aria-labelledby="pairing-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="pairing-h">Pairing. <span class="muted">Five bottles from the range, each matched to what is on the table.</span></h2>
+        </div>
+        <ul class="rows">
+          <li><span class="rows__name">Rombauer Chardonnay<small>Lobster, roast chicken, corn chowder</small></span><span class="rows__value">₹7,800</span></li>
+          <li><span class="rows__name">Far Niente Chardonnay<small>Crab cakes, creamy risotto</small></span><span class="rows__value">₹11,500</span></li>
+          <li><span class="rows__name">Stag's Leap Artemis<small>Grilled steak, aged gouda</small></span><span class="rows__value">₹12,500</span></li>
+          <li><span class="rows__name">Caymus Cabernet<small>Prime rib, mutton biryani</small></span><span class="rows__value">₹16,500</span></li>
+          <li><span class="rows__name">Silver Oak Cabernet<small>Ribeye, lamb chops, dark chocolate</small></span><span class="rows__value">₹18,500</span></li>
+        </ul>
+      </div>
+      <div class="span-6 start-7">
+        <div class="frame bottle-set" role="img" aria-label="Rombauer Chardonnay, Far Niente Chardonnay, Stag's Leap Artemis, Caymus Cabernet and Silver Oak Cabernet standing in a row">
+          <img src="assets/img/b10.webp" width="73" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+          <img src="assets/img/b16.webp" width="76" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+          <img src="assets/img/b09.webp" width="70" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+          <img src="assets/img/b06.webp" width="70" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+          <img src="assets/img/b03.webp" width="69" height="250" alt="" loading="lazy" decoding="async" data-source="client" data-subject="product">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head">
+          <h2 id="faq-h">Questions</h2>
+          <p>Age checks, delivery and payment, answered.</p>
+        </div>
+        <a class="link" href="mailto:adityasingh11may@gmail.com">Email us</a>
+      </div>
+      <div class="faq span-6 start-7">
+        <div class="faq__item"><img data-icon="ui:shield-check" src="assets/icons/ui-shield-check.svg" alt=""><h3>Who can order?</h3><p>Anyone aged 21 or over. Age is checked at delivery.</p></div>
+        <div class="faq__item"><img data-icon="ui:truck" src="assets/icons/ui-truck.svg" alt=""><h3>What does delivery cost?</h3><p>Free when your order is over ₹5,000, otherwise ₹250. Orders ship within 24 hours.</p></div>
+        <div class="faq__item"><img data-icon="ui:banknote" src="assets/icons/ui-banknote.svg" alt=""><h3>How do I pay?</h3><p>On delivery, by cash, UPI or card.</p></div>
+        <div class="faq__item"><img data-icon="ui:shopping-cart" src="assets/icons/ui-shopping-cart.svg" alt=""><h3>How does the three-bottle deal work?</h3><p>Add any three bottles to your cart and ten percent comes off automatically.</p></div>
+        <div class="faq__item"><img data-icon="ui:package" src="assets/icons/ui-package.svg" alt=""><h3>Can I track my order?</h3><p>Yes. Choose Track an Order and enter your order number and phone number.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--word">
+      <div class="section-head--split">
+        <div><h2 id="close-h">Pick a bottle for tonight</h2><p class="t-lead">Nineteen wines from ₹3,200. Orders ship within 24 hours.</p></div>
+        <a class="btn btn--primary" href="#range">Order wine<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      </div>
+      <p class="close__word" aria-hidden="true">Fab Wines</p>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><span class="mark mark--initial" aria-hidden="true">F</span>Fab Wines</a>
+          <p class="footer__lede">Reds, whites, rosés and ports.</p>
+          <form method="post" action="/api/subscribe" class="form" style="display:flex;gap:var(--s-3);align-items:end">
+            <label class="field" style="flex:1">Email<input type="email" name="email" required autocomplete="email"></label>
+            <button class="btn btn--secondary" type="submit">Subscribe</button>
+          </form>
+        </div>
+        <div class="span-2 footer__col"><h4>Wines</h4><ul><li><a href="#range">The range</a></li><li><a href="#pairing">Pairing</a></li></ul></div>
+        <div class="span-2 footer__col"><h4>Three bottles</h4><ul><li><a href="#bundle">Ten percent off</a></li></ul></div>
+        <div class="span-2 footer__col"><h4>Questions</h4><ul><li><a href="#faq">Delivery and payment</a></li></ul></div>
+        <div class="span-2 footer__col"><h4>Contact</h4><ul><li><a href="mailto:adityasingh11may@gmail.com">Email us</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 Fab Wines. Alcohol is for adults only. Please drink responsibly.</span>
+        <div class="socials"></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
+</body>
+</html>

@@ -1,3 +1,11 @@
 node_modules
 .env
 data
+
+preview/.taste-skill/
+preview/.kit/
+preview/shots/
+relax/shots/
+journey/shots/
+**/shots/
+preview/assets/

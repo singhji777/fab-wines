@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab Wines: fine wine delivered to your door</title>
+<meta name="description" content="Nineteen reds, whites, rosés and ports from ₹3,200. Orders ship within 24 hours and delivery is free over ₹5,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Federo&family=Gilda+Display&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="home.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="home">
+<!--HEADER--><header><div class="wrap hd">
+  <a class="brand" href="index.html" aria-label="Fab Wines home"><b>Fab Wines</b><small>Uncork the extraordinary</small></a>
+  <nav aria-label="Main"><a href="wines.html">Wines</a><a href="bundle.html">Three bottles</a><a href="pairing.html">Pairing</a><a href="delivery.html">Delivery</a><a href="about.html">About us</a><a href="contact.html">Contact</a></nav>
+  <div class="right"><a class="cartlink" href="cart.html">Cart <b data-cart-count>0</b></a><button class="menu-btn" type="button" aria-label="Menu">☰</button></div>
+</div></header><!--/HEADER-->
+<main>
+<section class="hero intro" id="hero">
+  <div class="stage" id="stage">
+    <h1 class="sr">Fine wine, delivered to your door</h1>
+    <div class="win" id="win"><img src="img/photo/vineyard.webp" alt="" width="1920" height="1280" fetchpriority="high"></div>
+    <svg class="frame" id="frame" aria-hidden="true"><polygon id="framePoly" points="0,0"/></svg>
+    <p class="kick" id="kTop" aria-hidden="true">Fine</p>
+    <p class="word" id="word" aria-hidden="true"><span>W</span><span>I</span><span>N</span><span>E</span></p>
+    <div class="bottle" id="bottle"><img src="img/n1.webp" alt="Sassicaia 2018" width="164" height="640"><img class="refl" src="img/n1.webp" alt="" width="164" height="640"></div>
+    <p class="kick" id="kBot" aria-hidden="true">Delivered</p>
+    <p class="lead" id="lead">Nineteen reds, whites, rosés and ports from ₹3,200. Orders ship within 24 hours.</p>
+    <a class="circle" id="heroBtn" href="wines.html" data-wipe><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg>Shop<br>wines</a>
+  </div>
+</section>
+
+<section class="sec essence"><div class="wrap">
+  <h2 class="h-xl ess-h">Unveiling the essence of wine</h2>
+  <div class="ess-cols">
+    <p>We believe a bottle should earn its place. Every wine here is easy to share, easy to talk about and worth opening on an ordinary evening.</p>
+    <p>Tell us what is on the table and who is coming, and we will point you to something that fits. Then we pack it upright and ship it within 24 hours.</p>
+  </div>
+  <hr class="rule">
+  <div class="offer-head"><p class="label">We offer</p><h3 class="offer-title">Four kinds of wine, nineteen bottles</h3></div>
+  <div class="cats">
+    <a class="cat" href="wines.html?type=Red" data-wipe><div class="cat-pic"><img src="img/b06.webp" alt="Caymus Cabernet, a red wine" loading="lazy" width="70" height="250"></div><div class="cat-body"><h3>Red</h3><p>Deep and generous, for steak, lamb and slow dinners.</p><span class="cat-go">Shop reds <i>↗</i></span></div></a>
+    <a class="cat" href="wines.html?type=White" data-wipe><div class="cat-pic"><img src="img/b08.webp" alt="Cloudy Bay Sauvignon Blanc, a white wine" loading="lazy" width="77" height="250"></div><div class="cat-body"><h3>White</h3><p>Crisp and bright, for seafood, salads and curries.</p><span class="cat-go">Shop whites <i>↗</i></span></div></a>
+    <a class="cat" href="wines.html?type=Ros%C3%A9" data-wipe><div class="cat-pic"><img src="img/b12.webp" alt="Whispering Angel Rosé" loading="lazy" width="79" height="250"></div><div class="cat-body"><h3>Rosé</h3><p>Dry and juicy, for tandoori starters and long afternoons.</p><span class="cat-go">Shop rosé <i>↗</i></span></div></a>
+    <a class="cat" href="wines.html?type=Port" data-wipe><div class="cat-pic"><img src="img/b04.webp" alt="Graham's 20 Year Tawny, a port" loading="lazy" width="93" height="250"></div><div class="cat-body"><h3>Port</h3><p>Slow and sweet, for dark chocolate, nuts and cheese.</p><span class="cat-go">Shop port <i>↗</i></span></div></a>
+  </div>
+</div></section>
+
+<section class="sec paper" id="cellar">
+  <div class="wrap head-row"><h2 class="h-xl">From the cellar<br>to your table</h2>
+    <div class="arrows" data-for="rail1"><button type="button" data-d="-1" aria-label="Previous wines">←</button><span class="dots" aria-hidden="true">· · · ·</span><button type="button" data-d="1" aria-label="Next wines">→</button></div></div>
+  <div class="rail" id="rail1"></div>
+</section>
+
+<section class="sec meet"><div class="wrap meet-in">
+  <div class="meet-a"><p class="label">Meet</p><p class="disp meet-name">Tignanello</p></div>
+  <a class="mcard mcard-1 oct" href="wine.html?id=tignanello" aria-label="Tignanello 2018"><img class="bg" src="img/photo/grapes.webp" alt="" loading="lazy" style="object-position:50% 34%"><img class="bt" src="img/n2.webp" alt="" width="162" height="640" loading="lazy"></a>
+  <a class="mcard mcard-2 oct" href="wine.html?id=ornellaia" aria-label="Ornellaia 2017"><img class="bg" src="img/photo/harvest.webp" alt="" loading="lazy" style="object-position:4% 40%"><img class="bt" src="img/n3.webp" alt="" width="163" height="640" loading="lazy"></a>
+  <a class="circle gold meet-btn" href="wines.html?type=Red" data-wipe><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg>Shop<br>reds</a>
+  <p class="disp meet-name meet-b">Ornellaia</p>
+</div></section>
+
+
+<section class="sec process" id="process">
+  <div class="wrap head-row"><div><p class="label">How a bottle gets to you</p><h2 class="h-xl">From vineyard<br>to cellar to table</h2></div>
+    <div class="arrows" data-for="steps"><button type="button" data-d="-1" aria-label="Previous step">←</button><span class="dots" id="stepDots" aria-hidden="true"></span><button type="button" data-d="1" aria-label="Next step">→</button><button type="button" class="pp" id="stepPause" aria-label="Pause the slideshow">Pause</button></div></div>
+  <div class="steps" id="steps">
+    <article class="step"><div class="ph oct"><img src="img/photo/panorama.webp" alt="Vineyards across rolling Tuscan hills" loading="lazy"></div><div class="st-body"><span class="st-n">01</span><h3>Grown on the slope</h3><p>Vines ripen through the summer on hillsides picked for sun and drainage. The soil and the slope shape what ends up in your glass.</p></div></article>
+    <article class="step"><div class="ph oct"><img src="img/photo/harvest.webp" alt="Pickers harvesting grapes by hand" loading="lazy"></div><div class="st-body"><span class="st-n">02</span><h3>Picked by hand</h3><p>At harvest the bunches are cut by hand and sorted, so only ripe fruit goes to the press. Then comes fermentation, where the juice becomes wine.</p></div></article>
+    <article class="step"><div class="ph oct"><img src="img/photo/cellar.webp" alt="Rows of oak barrels resting in a cellar" loading="lazy" style="object-position:62% 50%"></div><div class="st-body"><span class="st-n">03</span><h3>Rested in the cellar</h3><p>The wine ages in oak barrels or tanks for months or years. Reds usually rest longer than whites, which is where depth and softness come from.</p></div></article>
+    <article class="step"><div class="ph oct"><img src="img/photo/hand-glass.webp" alt="A hand holding a glass of red wine" loading="lazy"></div><div class="st-body"><span class="st-n">04</span><h3>Poured at your table</h3><p>We pack each bottle upright and ship it within 24 hours. You open it at home, with the right dish beside it.</p></div></article>
+  </div>
+  <div class="step-prog" aria-hidden="true"><i id="stepBar"></i></div>
+</section>
+
+
+
+<section class="sec">
+  <div class="wrap head-row"><h2 class="h-xl">Tasting notes</h2>
+    <div class="arrows" data-for="rail2"><button type="button" data-d="-1" aria-label="Previous note">←</button><span class="dots" aria-hidden="true">· · · ·</span><button type="button" data-d="1" aria-label="Next note">→</button></div></div>
+  <div class="rail notes" id="rail2"></div>
+</section>
+
+<section class="sec book"><div class="wrap">
+  <div class="head-row"><h2 class="h-xl">Build a trio,<br>save ten percent<br>and open something new</h2>
+    <a class="circle gold" href="bundle.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg>View<br>all</a></div>
+  <div class="grid3">
+    <article class="trio-card"><div class="pic"><img class="bgp" src="img/photo/vineyard.webp" alt="" loading="lazy"><span class="notch"><small>Save</small><b>10%</b><small>3 bottles</small></span><div class="bots"><img src="img/n1.webp" alt="Sassicaia" loading="lazy"><img src="img/n2.webp" alt="Tignanello" loading="lazy"><img src="img/n3.webp" alt="Ornellaia" loading="lazy"></div></div><div class="body"><h3>Tuscan icons</h3><p>Sassicaia, Tignanello and Ornellaia.</p><span class="price">₹60,750<s>₹67,500</s></span><button class="btn" data-add-many="sassicaia,tignanello,ornellaia">Add the three to cart</button></div></article>
+    <article class="trio-card"><div class="pic"><img class="bgp" src="img/photo/hills.webp" alt="" loading="lazy"><span class="notch"><small>Save</small><b>10%</b><small>3 bottles</small></span><div class="bots"><img src="img/b11.webp" alt="Faust Cabernet" loading="lazy"><img src="img/b14.webp" alt="Pine Ridge Cabernet" loading="lazy"><img src="img/b13.webp" alt="Chateau Buena Vista Cabernet" loading="lazy"></div></div><div class="body"><h3>Californian cabernets</h3><p>Faust, Pine Ridge and Chateau Buena Vista.</p><span class="price">₹17,640<s>₹19,600</s></span><button class="btn" data-add-many="faust,pineridge,buenavista">Add the three to cart</button></div></article>
+    <article class="trio-card"><div class="pic"><img class="bgp" src="img/photo/panorama.webp" alt="" loading="lazy"><span class="notch"><small>Save</small><b>10%</b><small>3 bottles</small></span><div class="bots"><img src="img/b08.webp" alt="Cloudy Bay Sauvignon Blanc" loading="lazy"><img src="img/b15.webp" alt="William Fevre Chablis" loading="lazy"><img src="img/b01.webp" alt="Grand Napa Chardonnay" loading="lazy"></div></div><div class="body"><h3>Crisp whites</h3><p>Cloudy Bay, William Fevre Chablis and Grand Napa.</p><span class="price">₹13,140<s>₹14,600</s></span><button class="btn" data-add-many="cloudy,fevre,grandnapa">Add the three to cart</button></div></article>
+  </div>
+</div></section>
+
+<section class="sec dive"><div class="wrap">
+  <hr class="rule">
+  <div class="dive-grid">
+    <h2 class="h-xl">Dive into<br>our world</h2>
+    <a class="dive-card c1" href="pairing.html"><div class="ph oct"><img src="img/photo/hills.webp" alt="Vineyards and hills outside Siena" loading="lazy"></div><h3>Wine and dinner pairings</h3><p>Search a dish and see which of our nineteen bottles suits it, from grilled lamb to prawn tikka.</p></a>
+    <a class="dive-card c2" href="delivery.html"><div class="ph oct"><img src="img/photo/panorama.webp" alt="Vineyards across the Tuscan hills" loading="lazy" style="object-position:62% 50%"></div><h3>Delivery, paid on arrival</h3><p>Free over ₹5,000, packed upright and shipped within 24 hours. You pay when the bottles reach you.</p></a>
+    <a class="circle outline" href="about.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11"/></svg>About<br>us</a>
+  </div>
+</div></section>
+</main>
+<!--FOOTER--><footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><h4>Fab Wines</h4><a href="about.html">About us</a><a href="contact.html">Contact</a></div>
+      <div><h4>Shop</h4><a href="wines.html">Wines</a><a href="bundle.html">Three bottles</a><a href="cart.html">Cart</a></div>
+      <div><h4>Help</h4><a href="pairing.html">Pairing</a><a href="delivery.html">Delivery and questions</a></div>
+      <div><h4>Letters from the cellar</h4><form class="nl"><input type="email" name="email" placeholder="Your email" aria-label="Email" required><button class="btn sm">Subscribe</button></form></div>
+    </div>
+    <div class="legal"><span>© 2026 Fab Wines. Alcohol is for adults only. Please drink responsibly.</span><a href="credits.html">Photographs via Wikimedia Commons</a></div>
+    <div class="owner-end"><div><b>Aditya Singh</b><span>Founder and owner, Fab Wines</span></div><a href="mailto:adityasingh11may@gmail.com">adityasingh11may@gmail.com</a></div>
+  </div>
+  <div class="foot-word" aria-hidden="true">Fab Wines</div>
+</footer><!--/FOOTER-->
+<script src="wines.js"></script>
+<script src="reviews.js"></script>
+<script src="site.js"></script>
+<script src="hero.js"></script>
+<script src="home.js"></script>
+</body>
+</html>

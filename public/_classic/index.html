@@ -1,0 +1,670 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Fab Wines | Premium wines, delivered</title><link rel="icon" href="/logo.png">
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Layout: editorial storefront. Cream sections for browsing, black and burgundy bands for story. Products live in a snap-scrolling shelf with a cart drawer. */
+:root{
+  --ink:#1b1209; --ink-soft:#5b504a; --cream:#ffffff; --cream-2:#f7f3ec; --line:#e4dccb; --card:#ffffff;
+  --gold:#c9a24b; --gold-ink:#7d5f1c; --ruby:#a8153a; --wine:#4a1624; --black:#050404; --on-dark:#f3e9d2;
+  --display:'Bodoni Moda','Bodoni 72',Didot,Georgia,serif;
+  --body:'Hanken Grotesk','Segoe UI',Helvetica,Arial,sans-serif;
+  --gutter:max(18px,env(safe-area-inset-left,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#ffffff;color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-left:0;padding-right:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--black);z-index:60}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.in{width:min(1240px,100%);margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--gold-ink)}
+.dark .eyebrow{color:var(--gold)}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic;color:var(--ruby)}
+.dark h2 em,.dark h1 em{color:var(--gold)}
+.link{display:inline-flex;gap:10px;align-items:center;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:6px;background:none;border-top:0;border-left:0;border-right:0}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--black);color:var(--gold);border:1px solid var(--gold);padding:14px 26px;font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;text-decoration:none;transition:background .2s,color .2s}
+.btn:hover{background:var(--gold);color:var(--black)}
+.btn.light{background:transparent;color:var(--on-dark)}
+.btn.light:hover{background:var(--on-dark);color:var(--wine)}
+
+/* announcement */
+.ann{background:var(--black);color:var(--gold);overflow:hidden;white-space:nowrap}
+.ann .track{display:inline-flex;gap:0;animation:slide 38s linear infinite}
+.ann span{font-family:var(--display);font-style:italic;font-size:21px;padding:9px 0}
+.ann i{font-style:normal;margin:0 28px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--black);color:var(--on-dark);border-bottom:1px solid #2a2118}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark{width:44px;height:44px;background:var(--black);border:1px solid var(--gold);outline:1px solid rgba(201,162,75,.5);outline-offset:2px;display:grid;place-items:center;flex:0 0 auto}.brand b{font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:.3em;background:linear-gradient(#fff1c1,#b8862e);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{display:flex;gap:30px}
+nav a{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--on-dark);opacity:.85}
+nav a:hover{opacity:1;color:var(--gold)}
+.cartbtn{display:flex;align-items:center;gap:10px;background:none;border:1px solid #4a3a22;color:var(--on-dark);padding:9px 16px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase}
+.cartbtn .n{background:var(--gold);color:var(--black);border-radius:99px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:12px;letter-spacing:0;font-weight:600}
+@media(max-width:820px){nav{display:none}.mark{width:44px;height:44px;background:var(--black);border:1px solid var(--gold);outline:1px solid rgba(201,162,75,.5);outline-offset:2px;display:grid;place-items:center;flex:0 0 auto}.brand b{font-size:19px;letter-spacing:.22em}}
+
+/* hero */
+.hero{padding-block:clamp(48px,8vw,110px) clamp(40px,6vw,80px)}
+.hero .in{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(46px,7.4vw,108px);margin:20px 0 28px}
+.hero p{max-width:46ch;color:var(--ink);font-size:18px;margin:0 0 34px}
+.hero .cta{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
+.hero-art{position:relative;aspect-ratio:4/5;background:var(--black);display:grid;place-items:center;overflow:hidden;border:1px solid var(--gold)}
+.hero-art::after{content:"";position:absolute;inset:10px;border:1px solid rgba(201,162,75,.45);pointer-events:none}
+.hero-art svg{width:92%;height:auto;animation:float 7s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.hero-art small{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-family:var(--display);font-style:italic;font-size:20px;color:var(--on-dark)}
+@media(max-width:820px){.hero .in{grid-template-columns:1fr}.hero-art{aspect-ratio:1/1;max-height:440px}}
+
+/* categories */
+.cats{padding-block:20px 70px}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cat{background:var(--black);color:var(--on-dark);padding:26px 22px 22px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between;text-align:left;border:1px solid #2a2118;transition:transform .25s,border-color .25s}
+.cat:hover{transform:translateY(-4px);border-color:var(--gold)}
+.cat h3{font-size:34px}
+.cat span{font-size:13px;color:#cdbf9f}
+.cat .sw{width:34px;height:3px;background:var(--c)}
+@media(max-width:820px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* shelf */
+.shelf{background:var(--cream-2);padding-block:80px 90px}
+.sh-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.sh-head h2{font-size:clamp(38px,5.4vw,72px)}
+.filters{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin:36px 0 34px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tabs b{font-weight:400;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-right:10px}
+.tab{background:none;border:0;border-bottom:1px solid transparent;padding:6px 12px;font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.tab[aria-pressed="true"]{color:var(--wine);border-bottom-color:var(--wine);font-weight:500}
+.count{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft)}
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:6px max(18px,env(safe-area-inset-right,0px)) 18px 0;margin:0}
+.rail::-webkit-scrollbar{display:none}
+.card{flex:0 0 clamp(236px,26vw,300px);scroll-snap-align:start;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.pic{position:relative;background:linear-gradient(#17110d,#050404);height:300px;display:grid;place-items:center;overflow:hidden}
+.pic::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(rgba(201,162,75,.28),transparent 70%);top:70px}
+.pic svg{height:250px;width:auto;position:relative;transition:transform .4s}
+.card:hover .pic svg{transform:translateY(-6px) scale(1.03)}
+.badge{position:absolute;top:14px;left:14px;background:var(--card);color:var(--wine);font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;font-weight:500}
+.yr{position:absolute;top:14px;right:14px;color:var(--gold);font-size:12px;letter-spacing:.16em}
+.cb{padding:20px 20px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.cb small{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
+.cb h3{font-size:28px}
+.cb p{margin:0;color:var(--ink-soft);font-size:14.5px;line-height:1.5;flex:1}
+.buy{display:flex;align-items:center;justify-content:space-between;margin-top:14px;gap:10px}
+.price{font-family:var(--display);font-size:26px;font-weight:600;font-variant-numeric:tabular-nums}
+.add{background:var(--black);color:var(--gold);border:1px solid var(--black);padding:10px 16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:background .2s}
+.add:hover{background:var(--wine)}
+.ctl{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;align-items:center}
+.ctl .bar{flex:1;height:2px;background:var(--line);position:relative}
+.ctl .bar i{position:absolute;left:0;top:0;height:2px;background:var(--wine);width:20%}
+.arr{width:46px;height:46px;border:1px solid var(--ink);background:none;font-size:20px;display:grid;place-items:center}
+.arr:hover{background:var(--ink);color:var(--cream)}
+
+/* bundle */
+.bundle{background:var(--black);color:var(--on-dark);padding-block:70px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold)}
+.bundle .in{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.bundle h2{font-size:clamp(34px,4.6vw,60px);max-width:16ch}
+.bundle p{max-width:44ch;color:#cdbf9f;margin:14px 0 0}
+
+/* story */
+.story{background:var(--wine);color:var(--on-dark);padding-block:0}
+.story .in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);align-items:center;padding-block:90px}
+.art{background:var(--black);border:1px solid var(--gold);aspect-ratio:4/5;display:grid;place-items:center;position:relative;overflow:hidden}
+.art svg{width:100%;height:100%}
+.story h2{font-size:clamp(40px,5.6vw,80px);margin:18px 0 22px}
+.story p{color:#e2d3d2;max-width:46ch;font-size:18px;margin:0 0 30px}
+@media(max-width:820px){.story .in{grid-template-columns:1fr;padding-block:60px}.art{aspect-ratio:1/1}}
+
+/* pairing */
+.pair{padding-block:100px}
+.pair .in{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,6vw,90px);align-items:center}
+.shelfart{background:var(--black);aspect-ratio:1/1;display:flex;align-items:flex-end;justify-content:center;gap:2%;padding:8% 6% 0;border:1px solid var(--gold);position:relative;overflow:hidden}
+.shelfart svg{height:54%;width:auto;flex:0 1 auto;min-width:0}
+.shelfart::after{content:"";position:absolute;left:0;right:0;bottom:0;height:9%;background:linear-gradient(#5a4023,#2c1d0e);border-top:2px solid var(--gold)}
+.pair h2{font-size:clamp(40px,5.6vw,80px);margin:18px 0 26px;text-transform:uppercase;line-height:.98}
+.pair h2 em{text-transform:none}
+.pairs{display:grid;gap:0;margin:0 0 34px;border-top:1px solid var(--line)}
+.pairs div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.pairs b{font-family:var(--display);font-size:24px;font-weight:600}
+.pairs span{color:var(--ink-soft);text-align:right}
+@media(max-width:820px){.pair .in{grid-template-columns:1fr}.pair{padding-block:60px}}
+
+/* trust */
+.trust{background:var(--cream-2);padding-block:50px;border-top:1px solid var(--line)}
+.tr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tr-grid div{display:flex;flex-direction:column;gap:6px}
+.tr-grid b{font-family:var(--display);font-size:24px;font-weight:600}
+.tr-grid span{color:var(--ink-soft);font-size:14.5px}
+.tr-grid i{width:28px;height:2px;background:var(--gold);margin-bottom:8px}
+@media(max-width:820px){.tr-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* closing */
+.close{background:var(--wine);color:var(--on-dark);text-align:center;padding-block:110px 100px}
+.close svg{width:30px;height:30px}
+.close h2{font-size:clamp(46px,8vw,118px);margin:20px 0 40px}
+.close h2 em{color:var(--gold)}
+.enq{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:640px;margin:0 auto;text-align:left}
+.enq input,.enq textarea{background:transparent;border:1px solid rgba(201,162,75,.55);color:var(--on-dark);padding:14px 16px;font:inherit;width:100%;min-width:0}
+.enq input::placeholder,.enq textarea::placeholder{color:#b9a58f}
+.enq textarea{grid-column:1/-1;min-height:110px;resize:vertical}
+.enq .btn{grid-column:1/-1;justify-content:center;cursor:pointer}
+.note{font-size:14px;color:var(--gold);min-height:22px;margin-top:16px}
+@media(max-width:560px){.enq{grid-template-columns:1fr}}
+
+footer{background:var(--black);color:#cdbf9f;padding-block:56px 40px}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.4fr;gap:34px}
+.ft h4{font-family:var(--display);font-size:22px;font-weight:600;color:var(--on-dark);margin:0 0 12px}
+.ft a{display:block;text-decoration:none;padding:3px 0;font-size:15px}
+.ft a:hover{color:var(--gold)}
+.ft form{display:flex;gap:0}
+.ft input{flex:1;min-width:0;background:transparent;border:1px solid #4a3a22;border-right:0;color:var(--on-dark);padding:12px 14px;font:inherit}
+.ft button{background:var(--gold);color:var(--black);border:0;padding:0 18px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.legal{border-top:1px solid #2a2118;margin-top:40px;padding-top:22px;font-size:13px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(max-width:820px){.ft{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.ft{grid-template-columns:1fr}}
+
+/* cart */
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:70;opacity:0;pointer-events:none;transition:opacity .25s}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--card);z-index:71;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body.open .veil{opacity:1;pointer-events:auto}
+body.open .drawer{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}
+.dh h3{font-size:30px}
+.dh button{background:none;border:0;font-size:30px;line-height:1}
+.items{flex:1;overflow:auto;padding:8px 22px}
+.it{display:grid;grid-template-columns:54px 1fr auto;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.it .th{background:var(--black);height:84px;display:grid;place-items:center}
+.it .th svg{height:76px;width:auto}
+.it b{font-family:var(--display);font-size:22px;font-weight:600;line-height:1.1;display:block}
+.it small{color:var(--ink-soft)}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);margin-top:8px}
+.qty button{width:30px;height:30px;background:none;border:0;font-size:16px}
+.qty span{min-width:26px;text-align:center;font-size:14px}
+.empty{color:var(--ink-soft);padding:40px 0;text-align:center}
+.df{border-top:1px solid var(--line);padding:18px 22px 22px;display:grid;gap:8px;background:var(--cream-2)}
+.df div{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.df .tot{font-family:var(--display);font-size:28px;font-weight:600}
+.df .hint{font-size:13px;color:var(--gold-ink)}
+.df .btn{justify-content:center;margin-top:6px;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--black);color:var(--on-dark);border:1px solid var(--gold);padding:12px 20px;z-index:80;opacity:0;pointer-events:none;transition:.25s;font-size:14px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* v3: reference-style header, full-bleed slider, floating helpers */
+body::before{background:#fbf6e6}
+.ann{background:var(--gold);color:var(--black);text-align:center;padding:10px 14px;font-size:14px;font-weight:500;letter-spacing:.03em;white-space:normal;overflow:visible}
+header{background:#fbf6e6;color:var(--ink);border-bottom:1px solid var(--line)}
+.hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:72px}
+.hd .rt{display:flex;justify-content:flex-end;gap:6px;align-items:center}
+.ico{background:none;border:0;color:var(--ink);padding:8px;display:inline-grid;place-items:center;position:relative;justify-self:start}
+.hd .rt .ico{justify-self:end}
+header .brand b{background:none;-webkit-background-clip:initial;background-clip:initial;color:var(--ink);font-size:24px}
+header .cartbtn{border:0}
+header .cartbtn .n{position:absolute;top:-2px;right:-4px;background:var(--wine);color:#fff;min-width:20px;height:20px;font-size:11px}
+@media(max-width:560px){header .brand b{display:none}}
+.slider{position:relative;height:clamp(540px,80vh,740px);background:var(--black);overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .9s,visibility .9s}
+.slide.on{opacity:1;visibility:visible}
+.slide>svg{position:absolute;inset:0;width:100%;height:100%}
+.slide .tx{position:absolute;top:50%;transform:translateY(-50%);right:max(5vw,env(safe-area-inset-right,0px));width:min(540px,42%);color:var(--on-dark)}
+.slide .tx h1{font-size:clamp(42px,5.4vw,84px);line-height:1.02;margin:0 0 20px}
+.slide .tx p{font-size:clamp(17px,1.6vw,22px);line-height:1.5;color:#eadfc8;margin:0 0 30px}
+.slide .tx .btn{background:var(--gold);color:var(--black);padding:16px 30px}
+.slide .tx .btn:hover{background:var(--on-dark)}
+.dots{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;gap:12px;z-index:3}
+.dots button{width:70px;height:18px;background:none;border:0;padding:0;display:grid;align-items:center}
+.dots button i{display:block;height:3px;background:rgba(255,255,255,.35);position:relative;overflow:hidden}
+.dots button.on i::after{content:"";position:absolute;inset:0;background:var(--gold);transform-origin:left;animation:fill 6s linear forwards}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:820px){
+ .slider{height:clamp(560px,88vh,720px)}
+ .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 28%,rgba(0,0,0,.88) 62%);pointer-events:none}
+ .slide .tx{z-index:2;top:auto;bottom:64px;transform:none;left:max(18px,env(safe-area-inset-left,0px));right:max(18px,env(safe-area-inset-right,0px));width:auto}
+ .slide .tx h1{font-size:clamp(38px,10vw,56px)}
+ .slide .tx{bottom:112px}
+ .slide>svg{inset:auto;top:0;left:calc(50% - 294px);width:1120px;height:490px}
+ .dots{bottom:76px}
+}
+.cats{padding-top:70px}
+.menu{position:fixed;top:0;left:0;bottom:0;width:min(380px,88%);background:#fbf6e6;z-index:71;transform:translateX(-100%);transition:transform .3s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px)}
+.ml{padding:10px 26px 30px;overflow:auto;display:flex;flex-direction:column}
+.ml small{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-ink);margin:22px 0 6px}
+.ml a{font-family:var(--display);font-size:30px;font-weight:500;text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
+.ml a:hover{color:var(--ruby)}
+.menu .dh{border-bottom:1px solid var(--line)}
+.menu .dh button{background:none;border:0;font-size:30px}
+body.menu .menu{transform:none}
+body.open .veil,body.menu .veil,body.search .veil{opacity:1;pointer-events:auto}
+.search{position:fixed;top:0;left:0;right:0;background:#fbf6e6;z-index:72;transform:translateY(-105%);transition:transform .3s;padding-block:calc(18px + env(safe-area-inset-top,0px)) 24px;max-height:86vh;overflow:auto}
+body.search .search{transform:none}
+.sr{display:flex;gap:10px;border-bottom:2px solid var(--ink)}
+.sr input{flex:1;min-width:0;background:none;border:0;font:inherit;font-family:var(--display);font-size:30px;padding:10px 0;color:var(--ink)}
+.sr input:focus{outline:0}
+.sr button{background:none;border:0;font-size:32px}
+.sres{display:grid;gap:0;margin-top:10px}
+.sres .r{display:grid;grid-template-columns:44px 1fr auto auto;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.sres .r .th{background:var(--black);height:70px;display:grid;place-items:center}
+.sres .r .th svg{height:62px;width:auto}
+.sres .r b{font-family:var(--display);font-size:22px;font-weight:600;display:block;line-height:1.1}
+.sres .r small{color:var(--ink-soft)}
+.sres .none{padding:22px 0;color:var(--ink-soft)}
+.fl-offer{position:fixed;left:max(18px,env(safe-area-inset-left,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:45;background:var(--wine);color:#fff;text-decoration:none;display:flex;gap:10px;align-items:center;padding:14px 22px;border-radius:99px;font-weight:500;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.fl-help{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:45;width:64px;height:64px;border-radius:50%;background:var(--wine);border:3px solid #fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.help{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:46;background:#fff8e4;color:var(--ink);width:min(300px,calc(100% - 36px));padding:18px;border:1px solid var(--gold);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.help p{margin:0 0 12px;font-size:15px;line-height:1.45}
+.help .x{position:absolute;top:4px;right:10px;background:none;border:0;font-size:22px}
+.help .opts{display:grid;gap:8px}
+.help .opts button{background:var(--black);color:var(--gold);border:0;padding:11px 14px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;text-align:left}
+.help .opts button:hover{background:var(--wine)}
+.toast{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+/* insights dashboard */
+.ins{background:var(--cream-2);padding-block:80px 70px;border-top:1px solid var(--line)}
+.ins h2{font-size:clamp(38px,5.4vw,72px)}
+.ins-top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.per{display:flex;border:1px solid var(--ink)}
+.per button{background:none;border:0;padding:10px 18px;font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.per button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+.drail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:10px}
+.drail::-webkit-scrollbar{display:none}
+.dp{flex:0 0 min(430px,86vw);scroll-snap-align:start;background:#fff;border:1px solid var(--line);padding:26px 26px 24px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.dp h3{font-size:28px}
+.dp small{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-ink)}
+.kp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.kp div{background:#fff;padding:16px 14px}
+.kp b{display:block;font-family:var(--display);font-size:38px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.kp span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.kp em{display:block;font-style:normal;font-size:13px;color:#2f7a4a;margin-top:4px}
+.br{display:grid;grid-template-columns:170px 1fr 36px;gap:10px;align-items:center;font-size:14px;padding:3px 0}
+.br span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.br i{display:block;height:12px;background:var(--cream-2);position:relative}
+.br i u{position:absolute;left:0;top:0;bottom:0;background:var(--c,var(--wine));transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.br b{font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.stack{display:flex;height:34px;border:1px solid var(--line)}
+.stack u{display:block;transition:flex .7s;background:var(--c)}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;font-size:14px}
+.leg span:before{content:"";display:inline-block;width:10px;height:10px;background:var(--c);margin-right:8px}
+.leg b{font-weight:500;float:right;font-variant-numeric:tabular-nums}
+.trend svg{width:100%;height:auto;display:block}
+.trend text{font-family:var(--body);font-size:11px;fill:var(--ink-soft)}
+.src{font-size:13px;color:var(--ink-soft);margin-top:18px}
+
+/* scrolling border */
+.ribbon{height:26px;background:#050404 url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2748%27%20height%3D%2722%27%20viewBox%3D%270%200%2048%2022%27%3E%3Cpath%20d%3D%27M0%2011H14M34%2011H48%27%20stroke%3D%27%23c9a24b%27%20stroke-width%3D%271%27/%3E%3Cpath%20d%3D%27M24%203L32%2011L24%2019L16%2011Z%27%20fill%3D%27none%27%20stroke%3D%27%23c9a24b%27%20stroke-width%3D%271.4%27/%3E%3Cpath%20d%3D%27M24%208L27%2011L24%2014L21%2011Z%27%20fill%3D%27%23a8153a%27/%3E%3C/svg%3E") repeat-x 0 2px;border-top:1px solid #c9a24b;border-bottom:1px solid #c9a24b;animation:rb 14s linear infinite}
+@keyframes rb{to{background-position:-480px 2px}}
+.ribbon.lt{background-color:#fff}
+.sprog{position:absolute;left:0;bottom:-1px;height:3px;width:0;background:linear-gradient(90deg,#8f6420,#fff1c1,#c9a24b)}
+
+/* black and gold stage for bottles */
+.pic{background:radial-gradient(62% 52% at 50% 40%,rgba(224,184,92,.42),rgba(201,162,75,.10) 55%,transparent 75%),linear-gradient(#1c130a,#030202)}
+.pic::before{display:none}
+.pic::after{content:"";position:absolute;left:14%;right:14%;bottom:14px;height:16px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,226,150,.75),rgba(201,162,75,.25) 55%,transparent 72%)}
+.pic{box-shadow:inset 0 0 0 1px rgba(201,162,75,.55)}
+.pic svg{filter:drop-shadow(0 0 14px rgba(201,162,75,.35))}
+/* owner */
+.owner{max-width:760px;margin:0 auto 44px;border:1px solid var(--gold);padding:30px;display:grid;grid-template-columns:auto 1fr;gap:26px;text-align:left;background:rgba(0,0,0,.28)}
+.ava{width:92px;height:92px;border:1px solid var(--gold);display:grid;place-items:center;font-family:var(--display);font-size:44px;color:var(--gold);background:#050404}
+.owner h3{font-size:34px;color:#fff}
+.owner .rl{color:var(--gold);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin:4px 0 14px}
+.cl{display:grid;gap:8px}
+.cl div{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:16px;word-break:break-word}
+.cl small{width:64px;color:#b9a58f;letter-spacing:.16em;text-transform:uppercase;font-size:11px}
+.cl a{text-decoration:none;border-bottom:1px solid rgba(201,162,75,.6)}
+.cp{background:none;border:1px solid rgba(201,162,75,.6);color:var(--gold);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px}
+.cp:hover{background:var(--gold);color:#050404}
+@media(max-width:560px){.owner{grid-template-columns:1fr}}
+
+/* offers */
+.pw{display:flex;flex-direction:column;gap:2px}
+.mrp{text-decoration:line-through;color:var(--ink-soft);font-size:14px;line-height:1;font-variant-numeric:tabular-nums}
+.off{position:absolute;left:14px;bottom:14px;z-index:2;background:var(--ruby);color:#fff;font-size:11.5px;letter-spacing:.14em;padding:5px 10px;font-weight:500}
+.save{font-size:13px;color:#2f7a4a;margin-top:4px}
+.trio{background:var(--black);color:var(--on-dark);padding-block:80px;border-top:1px solid var(--gold)}
+.tframe{border:1px solid var(--gold);outline:1px solid rgba(201,162,75,.45);outline-offset:6px;display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(20px,4vw,60px);align-items:center;padding:clamp(24px,4vw,56px);background:radial-gradient(60% 70% at 70% 45%,rgba(224,184,92,.28),transparent 70%)}
+.tframe h2{font-size:clamp(38px,5vw,66px);margin:16px 0 18px;color:#fff}
+.tframe h2 em{color:var(--gold)}
+.tframe p{color:#d9ccb2;max-width:44ch;margin:0 0 22px}
+.tlist{display:grid;gap:0;margin:0 0 22px;border-top:1px solid rgba(201,162,75,.4)}
+.tlist div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,162,75,.4);font-size:15px}
+.tlist b{font-family:var(--display);font-size:21px;font-weight:600}
+.tlist s{color:#a99a7d;margin-right:8px}
+.tprice{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.tprice .big{font-family:var(--display);font-size:52px;font-weight:600;color:var(--gold);line-height:1}
+.tprice s{color:#a99a7d;font-size:18px}
+.tag{background:var(--ruby);color:#fff;font-size:12px;letter-spacing:.14em;padding:5px 11px;font-weight:500}
+.tsave{color:#8fd1a6;font-size:14px;margin-bottom:22px}
+.tstage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:2%;min-height:440px}
+.tstage::after{content:"";position:absolute;left:4%;right:4%;bottom:-6px;height:22px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(255,226,150,.7),rgba(201,162,75,.2) 55%,transparent 72%)}
+.tb{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:0}
+.tb img{height:min(420px,56vw);width:auto;max-width:100%;filter:drop-shadow(0 0 16px rgba(201,162,75,.35))}
+.tb .tag{position:absolute;top:0;right:4%;z-index:2}
+@media(max-width:820px){.tframe{grid-template-columns:1fr}.tstage{min-height:0}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff1c1"/><stop offset=".5" stop-color="#d4a94e"/><stop offset="1" stop-color="#9a6d22"/></linearGradient>
+<linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1c1"/><stop offset=".3" stop-color="#e6c36a"/><stop offset=".6" stop-color="#b8862e"/><stop offset="1" stop-color="#8f6420"/></linearGradient>
+<linearGradient id="wn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2183f"/><stop offset=".5" stop-color="#7e0b2a"/><stop offset="1" stop-color="#3a0314"/></linearGradient>
+<linearGradient id="gl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".25"/><stop offset=".3" stop-color="#fff" stop-opacity=".04"/><stop offset=".7" stop-color="#fff" stop-opacity=".03"/><stop offset="1" stop-color="#fff" stop-opacity=".16"/></linearGradient>
+<linearGradient id="hl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+<clipPath id="bowl"><path d="M426,200 C418,290 432,372 500,396 C568,372 582,290 574,200 Z"/></clipPath>
+<symbol id="glass" viewBox="310 165 380 380"><path d="M426,200 C418,290 432,372 500,396 C568,372 582,290 574,200 Z" fill="#070405"/><g clip-path="url(#bowl)"><rect x="400" y="262" width="200" height="150" fill="url(#wn)"/><ellipse cx="500" cy="262" rx="76" ry="9" fill="#e0345e"/><ellipse cx="500" cy="263" rx="62" ry="6" fill="#9e1236"/><path d="M426,200 C418,290 432,372 500,396 C568,372 582,290 574,200 Z" fill="url(#gl)"/></g><ellipse cx="500" cy="200" rx="74" ry="10" fill="none" stroke="url(#gd)" stroke-width="3.5"/><path d="M426,200 C418,290 432,372 500,396 C568,372 582,290 574,200" fill="none" stroke="url(#gd)" stroke-width="4.5"/><path d="M441,222 C436,285 446,336 472,366" fill="none" stroke="url(#hl)" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="M494,394 L506,394 L503,496 L497,496 Z" fill="url(#gv)"/><ellipse cx="500" cy="440" rx="9" ry="4.5" fill="url(#gv)"/><path d="M440,512 C455,500 485,494 500,494 C515,494 545,500 560,512 C545,522 515,526 500,526 C485,526 455,522 440,512 Z" fill="url(#gv)"/></symbol>
+</defs></svg>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="pgw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8275e"/><stop offset=".3" stop-color="#b0123f"/><stop offset=".72" stop-color="#5c0a22"/><stop offset="1" stop-color="#2a030f"/></linearGradient>
+<linearGradient id="pgs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".62"/><stop offset=".24" stop-color="#000" stop-opacity="0"/><stop offset=".76" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></linearGradient>
+<radialGradient id="pgglow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9db8" stop-opacity=".85"/><stop offset=".5" stop-color="#ff4d7e" stop-opacity=".3"/><stop offset="1" stop-color="#ff4d7e" stop-opacity="0"/></radialGradient>
+<radialGradient id="pgsurf" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff7a9f"/><stop offset=".7" stop-color="#c41848"/><stop offset="1" stop-color="#7d0d2c"/></radialGradient>
+<linearGradient id="pgg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".34"/><stop offset=".22" stop-color="#fff" stop-opacity=".05"/><stop offset=".5" stop-color="#fff" stop-opacity=".02"/><stop offset=".78" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#fff" stop-opacity=".3"/></linearGradient>
+<linearGradient id="pgd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff1c1"/><stop offset=".35" stop-color="#e6c36a"/><stop offset=".7" stop-color="#b8862e"/><stop offset="1" stop-color="#8a6218"/></linearGradient>
+<linearGradient id="pgst" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".12"/><stop offset=".3" stop-color="#fff" stop-opacity=".9"/><stop offset=".62" stop-color="#e9dcc2" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity=".12"/></linearGradient>
+<radialGradient id="pgfoot" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".7" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity=".3"/></radialGradient>
+<radialGradient id="pgfloor" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffe29a" stop-opacity=".75"/><stop offset=".6" stop-color="#c9a24b" stop-opacity=".22"/><stop offset="1" stop-color="#c9a24b" stop-opacity="0"/></radialGradient>
+<clipPath id="pgc"><path d="M122,60 C100,120 92,230 112,300 C128,356 170,392 196,402 L204,402 C230,392 272,356 288,300 C308,230 300,120 278,60 Z"/></clipPath>
+<symbol id="pglass" viewBox="0 0 400 700">
+<ellipse cx="200" cy="636" rx="150" ry="18" fill="url(#pgfloor)"/>
+<ellipse cx="200" cy="626" rx="92" ry="15" fill="url(#pgfoot)"/>
+<ellipse cx="200" cy="626" rx="92" ry="15" fill="none" stroke="url(#pgd)" stroke-width="2.4"/>
+<ellipse cx="200" cy="622" rx="58" ry="7" fill="#fff" opacity=".18"/>
+<ellipse cx="200" cy="629" rx="42" ry="5" fill="#ff5c86" opacity=".3"/>
+<path d="M194,398 L192,450 C191,520 189,580 184,622 L216,622 C211,580 209,520 208,450 L206,398 Z" fill="url(#pgst)"/>
+<path d="M196,410 C196,500 194,570 191,615" stroke="#fff" stroke-width="1.8" opacity=".75" fill="none" stroke-linecap="round"/>
+<ellipse cx="200" cy="500" rx="10.5" ry="4" fill="url(#pgd)"/><ellipse cx="200" cy="499" rx="7" ry="1.6" fill="#fff" opacity=".6"/>
+<path d="M122,60 C100,120 92,230 112,300 C128,356 170,392 196,402 L204,402 C230,392 272,356 288,300 C308,230 300,120 278,60 Z" fill="url(#pgg)"/>
+<g clip-path="url(#pgc)">
+<rect x="80" y="222" width="240" height="190" fill="url(#pgw)"/>
+<rect x="80" y="222" width="240" height="190" fill="url(#pgs)"/>
+<ellipse cx="200" cy="372" rx="78" ry="62" fill="url(#pgglow)"/>
+<ellipse cx="200" cy="222" rx="101" ry="16" fill="url(#pgsurf)"/>
+<ellipse cx="200" cy="222" rx="101" ry="16" fill="none" stroke="#ff9fb9" stroke-opacity=".7" stroke-width="1.6"/>
+<ellipse cx="190" cy="219" rx="52" ry="5.5" fill="#fff" opacity=".28"/>
+<path d="M114,256 C112,296 128,340 166,376" fill="none" stroke="#ff9fb9" stroke-opacity=".42" stroke-width="9" stroke-linecap="round"/>
+<path d="M270,262 C274,296 262,330 238,360" fill="none" stroke="#ff7fa2" stroke-opacity=".22" stroke-width="5" stroke-linecap="round"/>
+</g>
+<path d="M122,60 C100,120 92,230 112,300 C128,356 170,392 196,402 L204,402 C230,392 272,356 288,300 C308,230 300,120 278,60" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="2"/>
+<ellipse cx="200" cy="60" rx="78" ry="11" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="1.4"/>
+<path d="M122,60 A78,11 0 0 0 278,60" fill="none" stroke="url(#pgd)" stroke-width="3.4"/>
+<path d="M122,60 A78,11 0 0 1 278,60" fill="none" stroke="url(#pgd)" stroke-width="2" opacity=".8"/>
+<path d="M118,108 C104,160 102,222 116,276" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="7" stroke-linecap="round"/>
+<path d="M130,96 C122,118 118,140 117,158" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="3" stroke-linecap="round"/>
+<path d="M286,118 C294,168 292,226 282,268" fill="none" stroke="#fff" stroke-opacity=".32" stroke-width="3.5" stroke-linecap="round"/>
+<g fill="#fff" opacity=".9"><path d="M158,380 l2.5,6 6,2.5 -6,2.5 -2.5,6 -2.5,-6 -6,-2.5 6,-2.5z" opacity=".5"/></g>
+</symbol>
+</defs></svg>
+<div class="ann" id="amsg" role="status">Any three bottles, ten percent off</div>
+
+<header><div class="in hd">
+  <button class="ico" id="menuBtn" aria-label="Open menu"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 8h22M3 14h22M3 20h22"/></svg></button>
+  <a class="brand" href="#top" aria-label="Fab Wines home"><span class="mark"><svg width="34" height="34" viewBox="310 165 380 380" aria-hidden="true"><use href="#glass" width="380" height="380" x="310" y="165"/></svg></span><b>FAB WINES</b></a>
+  <div class="rt"><button class="ico" id="searchBtn" aria-label="Search wines"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7.5"/><path d="M17 17l6 6"/></svg></button>
+  <div class="dd" id="ddAcct"><button class="hbtn" id="acctBtn" aria-haspopup="true" aria-expanded="false"><span class="hi" data-ic="user"></span><span class="lbl" id="acctLabel">Login</span><span class="hi sm" data-ic="chev"></span><i class="dot" id="acctDot" hidden></i></button><div class="ddm" id="acctMenu" role="menu"></div></div>
+  <div class="dd" id="ddMore"><button class="hbtn" id="moreBtn" aria-haspopup="true" aria-expanded="false"><span class="lbl">More</span><span class="hi sm" data-ic="chev"></span></button><div class="ddm" id="moreMenu" role="menu"></div></div>
+  <button class="ico cartbtn" id="openCart" aria-label="Open cart"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h3l3 13h12l3-9H8"/><circle cx="11" cy="23" r="1.6"/><circle cx="20" cy="23" r="1.6"/></svg><span class="n" id="cnt">0</span></button></div>
+</div><div class="sprog" id="sprog"></div></header>
+
+<main id="top">
+<section class="hero" id="hero">
+  <div class="hero-word" aria-hidden="true">FAB WINES</div>
+  <div class="hero-bottles" id="heroBottles" aria-hidden="true"></div>
+  <div class="in hero-in">
+    <h1>Pour. <br>Share. <br>Linger.</h1>
+    <div class="hero-cards">
+      <a class="hc" href="#cellar" data-go="All"><h3>The cellar</h3><p>Nineteen reds, whites, rosés and ports, chosen to be shared.</p><span class="go">Shop all wines ↗</span></a>
+      <a class="hc" href="#bundle"><h3>Three for ten</h3><p>Pick any three bottles and ten percent comes off in your cart.</p><span class="go">Build a bundle ↗</span></a>
+      <button class="hc" id="heroHelp" type="button"><h3>Not sure?</h3><p>Tell us the mood and we will point you to a bottle.</p><span class="go">Help me choose ↗</span></button>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story"><div class="in">
+  <h2 class="mega">We don't just sell wine. We sell the evening.</h2>
+  <div class="st-grid">
+    <div class="art"><svg viewBox="0 0 400 500" aria-hidden="true"><g transform="translate(0,85)">
+      <g stroke="url(#gd)" stroke-opacity=".5" stroke-width="1.2"><path d="M200,250 L40,60M200,250 L100,30M200,250 L200,20M200,250 L300,30M200,250 L360,60M200,250 L10,160M200,250 L390,160"/></g>
+      <path d="M60,250 A140,140 0 0 1 340,250" fill="none" stroke="url(#gd)" stroke-width="3"/><path d="M84,250 A116,116 0 0 1 316,250" fill="none" stroke="url(#gd)" stroke-width="1.2" opacity=".7"/>
+      <use href="#pglass" x="91" y="-88" width="217" height="380"/></g>
+    </svg></div>
+    <div class="st-copy"><p class="lead">We keep the shelf short on purpose. Every bottle is there because it is easy to share, easy to talk about, and worth opening on an ordinary evening.</p>
+      <p>No jargon on the labels and no rare bottles locked away. Tell us what is on the table and who is coming, and we will suggest something that fits.</p>
+      <a class="btn light" href="#table">See what to pair ↗</a></div>
+    <div class="st-pic"><img src="img/n2.webp" alt="Tignanello bottle"><img src="img/b08.webp" alt="Cloudy Bay Sauvignon Blanc bottle"></div>
+  </div>
+</div></section>
+
+<section class="shelf" id="cellar"><div class="in">
+  <div class="sh-head"><h2 class="mega">The bottle is the main thing at the table.</h2><a class="link" href="#cellar" id="all">View all wines ↗</a></div>
+  <div class="filters"><div class="tabs" id="tabs" role="group" aria-label="Filter wines"><b>Filter by</b></div><div class="count" id="count"></div></div>
+  <div class="rail" id="rail" tabindex="0" aria-label="Wine shelf, scroll sideways"></div>
+  <div class="ctl"><div class="bar"><i id="prog"></i></div><button class="arr" id="prev" aria-label="Previous wines">←</button><button class="arr" id="next" aria-label="Next wines">→</button></div>
+</div></section>
+
+<section class="trio" id="trio"><div class="in"><div class="tframe">
+  <div><div class="eyebrow" style="color:var(--gold)">The Tuscan trio</div><h2>Three icons, <em>one box.</em></h2><p>Sassicaia, Tignanello and Ornellaia together, with the ten percent bundle saving already in the price.</p>
+  <div class="tlist" id="tlist"></div><div class="tprice" id="tprice"></div><div class="tsave" id="tsave"></div><button class="btn" id="addTrio" style="background:var(--gold);color:var(--black);cursor:pointer">Add all three to cart</button></div>
+  <div class="tstage" id="tstage"></div>
+</div></div></section>
+<div class="ribbon lt" aria-hidden="true"></div><section class="bundle" id="bundle"><div class="in">
+  <div><div class="eyebrow">Build your bundle</div><h2 style="margin-top:14px">Any three bottles, <em>ten percent</em> off.</h2><p>Mix reds, whites, rosé and port. The saving applies in your cart automatically.</p></div>
+  <a class="btn" href="#cellar">Pick your three</a>
+</div></section>
+
+<section class="ins" id="insights"><div class="in">
+  <div class="ins-top"><div><div class="eyebrow">Cellar insights</div><h2 style="margin-top:14px">What the table is <em>pouring.</em></h2></div>
+  <div class="per" role="group" aria-label="Time range"><button data-p="7" aria-pressed="false">7 days</button><button data-p="30" aria-pressed="true">30 days</button><button data-p="90" aria-pressed="false">90 days</button></div></div>
+  <div class="drail" id="drail" tabindex="0" aria-label="Insights panels, scroll sideways"></div>
+  <p class="src">Sample figures for this preview. When the store goes live, these panels read from real orders.</p>
+</div></section>
+<section class="pair" id="table"><div class="in">
+  <h2 class="mega">Every bottle has a moment.</h2>
+  <div class="pair-grid">
+  <div class="shelfart" id="shelfart" aria-hidden="true"></div>
+  <div class="pair-copy">
+    <div class="pairs">
+      <div><b>Silver Oak Cabernet</b><span>Grilled lamb, aged cheese</span></div>
+      <div><b>Cloudy Bay Sauvignon Blanc</b><span>Seafood, light curries, salads</span></div>
+      <div><b>Whispering Angel Rosé</b><span>Tandoori starters, paneer tikka</span></div>
+      <div><b>Graham's 20 Year Tawny</b><span>Dark chocolate, nuts, slow evenings</span></div>
+    </div>
+    <a class="link" href="#contact">Talk to our cellar ↗</a></div>
+  </div>
+</div></section>
+
+<section class="trust"><div class="in tr-grid">
+  <div><i></i><b>Gift ready</b><span>Add a note and we wrap it.</span></div>
+  <div><i></i><b>Packed with care</b><span>Every bottle ships padded and upright.</span></div>
+  <div><i></i><b>Adults only</b><span>Age is checked at delivery.</span></div>
+  <div><i></i><b>Secure checkout</b><span>Pay on delivery by cash, UPI or card.</span></div>
+</div></section>
+
+<section class="close dark" id="contact"><div class="in">
+  <svg viewBox="-16 -16 32 32" aria-hidden="true"><path d="M0,-15 L4,-4 L15,0 L4,4 L0,15 L-4,4 L-15,0 L-4,-4 Z" fill="#c9a24b"/></svg>
+  <div class="eyebrow" style="margin-top:20px">A toast to the good things</div>
+  <h2>Meet us at <em>the table.</em></h2>
+  <div class="owner"><div class="ava" aria-hidden="true">A</div><div><h3>Aditya Singh</h3><div class="rl">Founder and owner, Fab Wines</div><div class="cl">
+<div><small>Phone</small><a href="tel:+919110040511">+91 91100 40511</a><button class="cp" data-copy="+919110040511" type="button">Copy</button></div>
+<div><small>Email</small><a href="mailto:adityasingh11may@gmail.com">adityasingh11may@gmail.com</a><button class="cp" data-copy="adityasingh11may@gmail.com" type="button">Copy</button></div>
+<div><small>GitHub</small><a href="https://github.com/singhji777" target="_blank" rel="noopener">github.com/singhji777</a></div></div></div></div>
+  <form class="enq" id="enq"><input id="en-name" placeholder="Your name" required aria-label="Your name"><input id="en-mail" type="email" placeholder="Email" required aria-label="Email"><textarea id="en-msg" placeholder="Tell us what you are celebrating" aria-label="Message"></textarea><button class="btn light" type="submit">Get in touch ↗</button></form>
+  <div class="note" id="enote" role="status"></div>
+</div></section>
+</main>
+
+<div class="ribbon" aria-hidden="true"></div><footer><div class="in">
+  <div class="ft">
+    <div><a class="brand" href="#top" style="padding:0"><span class="mark"><svg width="34" height="34" viewBox="310 165 380 380"><use href="#glass" width="380" height="380" x="310" y="165"/></svg></span><b style="font-size:20px">FAB WINES</b></a><p style="margin:14px 0 0;font-family:var(--display);font-style:italic;font-size:20px">Pour Something Fabulous</p></div>
+    <div><h4>Shop</h4><a href="#cellar" data-go="Red">Red</a><a href="#cellar" data-go="White">White</a><a href="#cellar" data-go="Rosé">Rosé</a><a href="#cellar" data-go="Port">Port</a></div>
+    <div><h4>Fab Wines</h4><a href="#story">Our way</a><a href="#bundle">Bundles</a><a href="#table">At the table</a><a href="#contact">Contact</a></div>
+    <div><h4>Letters from the cellar</h4><form id="news"><input id="nl" type="email" placeholder="Your email" required aria-label="Email for newsletter"><button>Join</button></form><div class="note" id="nnote" style="font-size:13px;margin-top:10px" role="status"></div></div>
+  </div>
+  <div class="legal"><span>© 2026 Fab Wines. Alcohol is for adults only. Please drink responsibly.</span><span>Sales are subject to your state's licence and age rules.</span></div>
+</div><div class="foot-word" aria-hidden="true">FAB WINES</div></footer>
+
+<aside class="menu" id="menu" aria-label="Menu"><div class="dh"><h3>Menu</h3><button id="closeMenu" aria-label="Close menu">×</button></div>
+<div class="ml"><small>Shop</small><a href="#cellar" data-go="All">All bottles</a><a href="#cellar" data-go="Red">Red</a><a href="#cellar" data-go="White">White</a><a href="#cellar" data-go="Rosé">Rosé</a><a href="#cellar" data-go="Port">Port</a><small>Fab Wines</small><a href="#bundle">Bundles</a><a href="#insights">Insights</a><a href="#story">Our way</a><a href="#table">At the table</a><a href="#contact">Contact</a></div></aside>
+<div class="search" id="search"><div class="in"><div class="sr"><input id="q" placeholder="Search wines, grapes, tasting notes" aria-label="Search wines" autocomplete="off"><button id="closeSearch" aria-label="Close search">×</button></div><div id="sres" class="sres"></div></div></div>
+<a class="fl-offer" href="#bundle" id="flOffer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="8" width="18" height="13"/><path d="M12 8v13M3 12h18M12 8c-3-5-7-3-5 0M12 8c3-5 7-3 5 0"/></svg>Offers</a>
+<div class="help" id="help" hidden><button class="x" id="helpX" aria-label="Close">×</button><p><b>Not sure what to pick?</b><br>What are you in the mood for?</p><div class="opts"><button data-mood="Red">Something bold</button><button data-mood="White">Light and fresh</button><button data-mood="Rosé">Pretty and dry</button><button data-mood="Port">A slow evening</button></div></div>
+<button class="fl-help" id="flHelp" aria-label="Help me choose a wine"><svg width="30" height="30" viewBox="-16 -16 32 32"><path d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#c9a24b"/><path transform="translate(9,-9) scale(.4)" d="M0,-14 L3.5,-3.5 L14,0 L3.5,3.5 L0,14 L-3.5,3.5 L-14,0 L-3.5,-3.5 Z" fill="#c9a24b"/></svg></button>
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Cart"><div class="dh"><h3>Your cart</h3><button id="closeCart" aria-label="Close cart">×</button></div><div class="items" id="items"></div><div class="df" id="df"></div></aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+
+var WINES=/*__WINES__*/[];
+var CATS=[['Red','Deep, warm and generous','#a8153a'],['White','Fresh, bright and clean','#e6c36a'],['Rosé','Light, dry and juicy','#e58a9b'],['Port','Slow, sweet and warming','#c9a24b']];
+var TYPE_STYLE={Red:{glass:'#1a1412',foil:'#8a0f2e',shape:'bx'},White:{glass:'#2b3a24',foil:'#d4a94e',shape:'sl'},'Rosé':{glass:'#3b2c2b',foil:'#e58a9b',shape:'sl'},Sparkling:{glass:'#1e2a22',foil:'#c9a24b',shape:'wd'}};
+var SHAPES={
+ bx:'M50,8 H70 V92 C70,112 92,120 92,152 V318 Q92,330 80,330 H40 Q28,330 28,318 V152 C28,120 50,112 50,92 Z',
+ sl:'M52,8 H68 V128 C68,146 86,152 86,176 V318 Q86,330 74,330 H46 Q34,330 34,318 V176 C34,152 52,146 52,128 Z',
+ wd:'M51,8 H69 V84 C69,114 100,128 100,176 V318 Q100,330 88,330 H32 Q20,330 20,318 V176 C20,128 51,114 51,84 Z'
+};
+function bottle(w,h){
+  if(w.img)return '<svg viewBox="0 0 120 340" '+(h?'height="'+h+'" ':'')+'aria-hidden="true"><image href="'+w.img+'" x="0" y="0" width="120" height="340" preserveAspectRatio="xMidYMax meet"/></svg>';
+  var s=TYPE_STYLE[w.type],p=SHAPES[s.shape],parts=w.name.toUpperCase().split(' ');
+  var cap=s.shape==='wd'?44:38;
+  return '<svg viewBox="0 0 120 340" '+(h?'height="'+h+'" ':'')+'aria-hidden="true"><path d="'+p+'" fill="'+s.glass+'" stroke="#e6c36a" stroke-opacity=".6" stroke-width="1.1"/>'
+   +'<rect x="'+(s.shape==='wd'?50:s.shape==='sl'?51:49)+'" y="8" width="'+(s.shape==='wd'?20:s.shape==='sl'?18:22)+'" height="'+cap+'" rx="2" fill="'+s.foil+'"/>'
+   +'<rect x="'+(s.shape==='wd'?50:s.shape==='sl'?51:49)+'" y="'+(cap+4)+'" width="'+(s.shape==='wd'?20:s.shape==='sl'?18:22)+'" height="3" fill="url(#gv)"/>'
+   +'<rect x="34" y="188" width="52" height="104" fill="#f4ecdc"/><rect x="37" y="191" width="46" height="98" fill="none" stroke="#c9a24b" stroke-width=".8"/>'
+   +'<text x="60" y="206" text-anchor="middle" font-family="Bodoni Moda,Georgia,serif" font-size="6.2" letter-spacing="1.6" fill="#7d5f1c">FAB WINES</text>'
+   +'<path d="M50,212 H70" stroke="#c9a24b" stroke-width=".8"/>'
+   +'<text x="60" y="236" text-anchor="middle" font-family="Bodoni Moda,Georgia,serif" font-size="'+(parts[0].length>7?10:11.5)+'" font-weight="600" fill="#1b1512">'+parts[0]+'</text>'
+   +(parts[1]?'<text x="60" y="250" text-anchor="middle" font-family="Bodoni Moda,Georgia,serif" font-size="'+(parts[1].length>7?9:10.5)+'" font-style="italic" fill="#4a1624">'+(parts[1].charAt(0)+parts[1].slice(1).toLowerCase())+'</text>':'')
+   +'<text x="60" y="276" text-anchor="middle" font-family="Hanken Grotesk,Arial,sans-serif" font-size="6" letter-spacing="1.4" fill="#5b504a">'+w.year+'</text>'
+   +'<path d="M36,'+(s.shape==='bx'?130:150)+' V310" stroke="#ffe9a8" stroke-opacity=".42" stroke-width="3" stroke-linecap="round"/><path d="M88,'+(s.shape==='bx'?150:176)+' V300" stroke="#c9a24b" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"/></svg>';
+}
+var $=function(s){return document.querySelector(s)};
+var fmt=function(n){return '₹'+new Intl.NumberFormat('en-IN').format(n)};
+var filter='All',cart=[];
+try{cart=JSON.parse(localStorage.getItem('fabcart')||'[]')}catch(e){cart=[]}
+function save(){try{localStorage.setItem('fabcart',JSON.stringify(cart))}catch(e){}}
+
+/* announcement */
+var msgs=['Any three bottles, ten percent off','Uncork the Extraordinary','Pour Something Fabulous'],mi=0;
+setInterval(function(){mi=(mi+1)%msgs.length;$('#amsg').textContent=msgs[mi]},4200);
+
+/* categories */
+
+/* tabs */
+['All','Red','White','Rosé','Port'].forEach(function(t){
+  var b=document.createElement('button');b.className='tab';b.textContent=t==='All'?'All bottles':t;b.dataset.t=t;b.setAttribute('aria-pressed',t==='All');$('#tabs').appendChild(b);
+});
+function render(){
+  var list=WINES.filter(function(w){return filter==='All'||w.type===filter});
+  $('#count').textContent=list.length+' expression'+(list.length>1?'s':'');
+  $('#rail').innerHTML=list.map(function(w){
+    return '<article class="card"><div class="pic">'+(w.badge?'<span class="badge">'+w.badge+'</span>':'')+'<span class="yr">'+w.year+'</span>'+bottle(w,300)+'<span class="off">'+w.pct+'% OFF</span></div>'
+    +'<div class="cb"><small>'+w.type+' · '+w.grape+'</small><h3>'+w.name+'</h3><p>'+w.notes+'</p><div class="save">You save '+fmt(w.mrp-w.price)+'</div><div class="buy"><span class="pw"><span class="mrp">'+fmt(w.mrp)+'</span><span class="price">'+fmt(w.price)+'</span></span><button class="add" data-add="'+w.id+'">Add to cart</button></div></div></article>';
+  }).join('');
+  $('#rail').scrollLeft=0;prog();
+  document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.t===filter)});
+}
+function prog(){var r=$('#rail'),max=r.scrollWidth-r.clientWidth;var w=Math.min(1,r.clientWidth/r.scrollWidth);$('#prog').style.width=(w*100)+'%';$('#prog').style.left=(max>0?(r.scrollLeft/max)*(1-w)*100:0)+'%'}
+$('#rail').addEventListener('scroll',prog);window.addEventListener('resize',prog);
+$('#prev').onclick=function(){$('#rail').scrollBy({left:-320,behavior:'smooth'})};
+$('#next').onclick=function(){$('#rail').scrollBy({left:320,behavior:'smooth'})};
+function go(t){filter=t;render();var el=$('#cellar');el.scrollIntoView({behavior:'smooth'})}
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-t]');if(t){filter=t.dataset.t;render();return}
+  var g=e.target.closest('[data-go]');if(g){e.preventDefault();closeAll();go(g.dataset.go);return}
+  if(e.target.closest('#menu a')){closeAll()}
+  var a=e.target.closest('[data-add]');if(a){add(a.dataset.add);return}
+  var q=e.target.closest('[data-q]');if(q){var it=cart.find(function(c){return c.id===q.dataset.id});if(it){it.q+=+q.dataset.q;if(it.q<1)cart=cart.filter(function(c){return c!==it})}draw();return}
+});
+$('#all').onclick=function(e){e.preventDefault();filter='All';render()};
+
+/* shelf art */
+$('#shelfart').innerHTML=['silveroak','cloudy','angel','graham'].map(function(id){return bottle(WINES.find(function(w){return w.id===id}))}).join('');
+
+/* cart */
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove('show')},1800)}
+function add(id){var it=cart.find(function(c){return c.id===id});if(it)it.q++;else cart.push({id:id,q:1});draw();toast('Added to your cart')}
+function draw(){
+  save();
+  var n=cart.reduce(function(s,c){return s+c.q},0);$('#cnt').textContent=n;
+  var sub=0;
+  $('#items').innerHTML=cart.length?cart.map(function(c){var w=WINES.find(function(x){return x.id===c.id});sub+=w.price*c.q;
+    return '<div class="it"><div class="th">'+bottle(w,76)+'</div><div><b>'+w.name+'</b><small>'+w.type+' · '+w.year+'</small><br><span class="qty"><button data-q="-1" data-id="'+w.id+'" aria-label="Fewer">−</button><span>'+c.q+'</span><button data-q="1" data-id="'+w.id+'" aria-label="More">+</button></span></div><div class="price" style="font-size:20px">'+fmt(w.price*c.q)+'</div></div>'}).join(''):'<div class="empty">Your cart is empty.<br>Add three bottles to save ten percent.</div>';
+  var disc=n>=3?Math.round(sub*0.1):0;
+  $('#df').innerHTML='<div><span>Subtotal</span><span>'+fmt(sub)+'</span></div>'
+   +(disc?'<div><span>Bundle saving (3+ bottles)</span><span>−'+fmt(disc)+'</span></div>':'<div class="hint">'+(n===0?'Any three bottles, ten percent off.':'Add '+(3-n)+' more bottle'+(3-n>1?'s':'')+' to save ten percent.')+'</div>')
+   +'<div class="tot"><span>Total</span><span>'+fmt(sub-disc)+'</span></div><button class="btn" id="co">Checkout</button>';
+  var co=$('#co');if(co)co.onclick=function(){toast('Checkout is built in the next stage')};
+}
+function closeAll(){document.body.classList.remove('open','menu','search')}
+function open(v){closeAll();if(v)document.body.classList.add('open')}
+$('#openCart').onclick=function(){open(true)};$('#closeCart').onclick=function(){open(false)};$('#veil').onclick=closeAll;
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+
+/* forms (preview only) */
+$('#enq').onsubmit=function(e){e.preventDefault();$('#enote').textContent='Thank you. This is a preview, so nothing was sent. Sending connects in the next stage.';this.reset()};
+$('#news').onsubmit=function(e){e.preventDefault();$('#nnote').textContent='Preview only. Sign-ups connect in the next stage.';this.reset()};
+
+
+
+
+/* menu, search, helper */
+$('#menuBtn').onclick=function(){closeAll();document.body.classList.add('menu')};
+$('#closeMenu').onclick=closeAll;
+$('#searchBtn').onclick=function(){closeAll();document.body.classList.add('search');setTimeout(function(){$('#q').focus()},250);find('')};
+$('#closeSearch').onclick=closeAll;
+function find(t){t=t.toLowerCase().trim();var l=WINES.filter(function(w){return !t||(w.name+' '+w.grape+' '+w.type+' '+w.notes).toLowerCase().indexOf(t)>-1});
+  $('#sres').innerHTML=l.length?l.map(function(w){return '<div class="r"><div class="th">'+bottle(w,62)+'</div><div><b>'+w.name+'</b><small>'+w.type+' · '+w.grape+' · '+w.year+'</small></div><span class="price" style="font-size:20px">'+fmt(w.price)+'</span><button class="add" data-add="'+w.id+'">Add</button></div>'}).join(''):'<div class="none">No wines match that. Try red, rosé or a grape name.</div>'}
+$('#q').oninput=function(){find(this.value)};
+$('#flHelp').onclick=function(){$('#help').hidden=!$('#help').hidden};
+$('#helpX').onclick=function(){$('#help').hidden=true};
+$('#help').addEventListener('click',function(e){var m=e.target.closest('[data-mood]');if(m){$('#help').hidden=true;go(m.dataset.mood);toast('Showing '+m.dataset.mood.toLowerCase()+' wines')}});
+
+
+/* insights */
+var BASE={sassicaia:48,tignanello:66,ornellaia:39,grandnapa:44,vajra:38,silveroak:52,graham:41,dobbes:63,caymus:57,corbin:71,cloudy:84,artemis:36,rombauer:49,faust:46,angel:92,buenavista:51,pineridge:47,fevre:58,farniente:33};
+var TC={Red:'#a8153a',White:'#c9a24b','Rosé':'#e58a9b',Port:'#6b2d3a'};
+var PM={7:.23,30:1,90:2.9},per=30;
+function dash(){
+  var k=PM[per],rows=WINES.map(function(w){return {w:w,q:Math.round(BASE[w.id]*k*(1+((w.id.charCodeAt(0)%5)-2)*.015))}}).sort(function(a,b){return b.q-a.q});
+  var bottles=rows.reduce(function(s,r){return s+r.q},0),rev=rows.reduce(function(s,r){return s+r.q*r.w.price},0),orders=Math.round(bottles/2.6),max=rows[0].q;
+  var bt={};rows.forEach(function(r){bt[r.w.type]=(bt[r.w.type]||0)+r.q});
+  var kp='<div><b>'+orders+'</b><span>Orders</span><em>+12% vs last period</em></div><div><b>'+bottles+'</b><span>Bottles</span><em>+9%</em></div><div><b>'+fmt(rev)+'</b><span>Revenue</span><em>+14%</em></div><div><b>'+fmt(Math.round(rev/orders))+'</b><span>Avg order</span><em>+3%</em></div>';
+  var bars=rows.slice(0,6).map(function(r){return '<div class="br"><span>'+r.w.name+'</span><i><u style="width:'+(r.q/max*100)+'%;--c:'+TC[r.w.type]+'"></u></i><b>'+r.q+'</b></div>'}).join('');
+  var types=Object.keys(bt),stack=types.map(function(t){return '<u style="flex:'+bt[t]+';--c:'+TC[t]+'" title="'+t+'"></u>'}).join('');
+  var leg=types.map(function(t){return '<span style="--c:'+TC[t]+'">'+t+' <b>'+Math.round(bt[t]/bottles*100)+'%</b></span>'}).join('');
+  var n=12,pts=[];for(var i=0;i<n;i++){pts.push(Math.round((60+i*3.2+Math.sin(i*1.3)*9+(i%4===3?10:0))*k/ (per===7?3:per===90?0.55:1)))}
+  var mx=Math.max.apply(null,pts)*1.15,W=380,H=170,P=26;
+  var xy=pts.map(function(v,i){return [P+i*(W-P-10)/(n-1),H-22-(v/mx)*(H-40)]});
+  var line=xy.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' ');
+  var area='M'+xy[0][0]+','+(H-22)+' L'+line.replace(/ /g,' L')+' L'+xy[n-1][0]+','+(H-22)+' Z';
+  var grid=[0,.5,1].map(function(f){var y=H-22-f*(H-40);return '<line x1="'+P+'" x2="'+(W-10)+'" y1="'+y+'" y2="'+y+'" stroke="#e4dccb"/><text x="0" y="'+(y+4)+'">'+Math.round(mx/1.15*f)+'</text>'}).join('');
+  var unit=per===7?'days':per===30?'weeks':'periods';
+  var tr='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Bottles sold over time">'+grid+'<path d="'+area+'" fill="#4a1624" fill-opacity=".1"/><polyline points="'+line+'" fill="none" stroke="#4a1624" stroke-width="2.4"/><circle cx="'+xy[n-1][0]+'" cy="'+xy[n-1][1]+'" r="5" fill="#c9a24b" stroke="#4a1624" stroke-width="2"/><text x="'+P+'" y="'+(H-4)+'">oldest</text><text x="'+(W-40)+'" y="'+(H-4)+'">latest</text></svg>';
+  $('#drail').innerHTML='<div class="dp"><small>Snapshot</small><h3>The last '+per+' days</h3><div class="kp">'+kp+'</div></div>'
+   +'<div class="dp"><small>Best sellers</small><h3>Top bottles</h3><div>'+bars+'</div></div>'
+   +'<div class="dp"><small>Mix</small><h3>Sales by style</h3><div class="stack">'+stack+'</div><div class="leg">'+leg+'</div></div>'
+   +'<div class="dp trend"><small>Momentum</small><h3>Bottles over time</h3>'+tr+'</div>';
+  document.querySelectorAll('.per button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.p===per)});
+}
+document.querySelector('.per').addEventListener('click',function(e){var b=e.target.closest('[data-p]');if(b){per=+b.dataset.p;dash()}});
+dash();
+
+window.addEventListener('scroll',function(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;$('#sprog').style.width=(m>0?h.scrollTop/m*100:0)+'%'},{passive:true});
+
+document.addEventListener('click',function(e){var c=e.target.closest('[data-copy]');if(!c)return;var t=c.dataset.copy;function ok(){toast('Copied '+t)}try{navigator.clipboard.writeText(t).then(ok,function(){toast(t)})}catch(x){toast(t)}});
+
+/* trio */
+(function(){var ids=['sassicaia','tignanello','ornellaia'],T=ids.map(function(id){return WINES.find(function(w){return w.id===id})});
+  var sum=T.reduce(function(a,w){return a+w.price},0),mrp=T.reduce(function(a,w){return a+w.mrp},0),bundle=Math.round(sum*0.9),pct=Math.round((1-bundle/mrp)*100);
+  $('#tlist').innerHTML=T.map(function(w){return '<div><b>'+w.name+' '+w.year+'</b><span><s>'+fmt(w.mrp)+'</s>'+fmt(w.price)+'</span></div>'}).join('');
+  $('#tprice').innerHTML='<span class="big">'+fmt(bundle)+'</span><s>'+fmt(mrp)+'</s><span class="tag">'+pct+'% OFF</span>';
+  $('#tsave').textContent='You save '+fmt(mrp-bundle)+' on the set.';
+  $('#tstage').innerHTML=T.map(function(w){return '<div class="tb"><span class="tag">'+w.pct+'% OFF</span><img src="'+w.img+'" alt="'+w.name+' '+w.year+'"></div>'}).join('');
+  $('#addTrio').onclick=function(){ids.forEach(function(id){var it=cart.find(function(c){return c.id===id});if(it)it.q++;else cart.push({id:id,q:1})});draw();toast('The trio is in your cart')};
+})();
+render();draw();
+</script>
+
+<link rel="stylesheet" href="/fonts.css"><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/mova.css"><script src="/app.js"></script><script src="/mova.js"></script></body></html>

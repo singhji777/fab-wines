@@ -68,11 +68,12 @@ async function connect() {
     process.exit(1);
   }
   db = client.db(MONGODB_DB);
-  ['users', 'products', 'orders', 'wishlist', 'coupons', 'notifications', 'enquiries', 'subscribers', 'meta'].forEach(n => { C[n] = db.collection(n); });
+  ['users', 'products', 'orders', 'wishlist', 'coupons', 'notifications', 'enquiries', 'subscribers', 'reviews', 'meta'].forEach(n => { C[n] = db.collection(n); });
   await C.users.createIndex({ email: 1 }, { unique: true });
   await C.orders.createIndex({ user_id: 1 }); await C.orders.createIndex({ created: -1 });
   await C.wishlist.createIndex({ user_id: 1, product_id: 1 }, { unique: true });
   await C.notifications.createIndex({ user_id: 1 });
+  await C.reviews.createIndex({ user_id: 1, product_id: 1 }, { unique: true });
   if (!SECRET) {
     let m = await C.meta.findOne({ _id: 'secret' });
     if (!m) { await C.meta.updateOne({ _id: 'secret' }, { $setOnInsert: { value: crypto.randomBytes(32).toString('hex') } }, { upsert: true }); m = await C.meta.findOne({ _id: 'secret' }); }
@@ -109,19 +110,30 @@ const products = async () => (await C.products.find({ active: true }).sort({ sor
 const view = p => { const { _id, ...r } = p; return { id: _id, ...r, pct: Math.round((1 - p.price / p.mrp) * 100) }; };
 
 const PUB = fs.existsSync(path.join(__dirname, 'public')) ? path.join(__dirname, 'public') : __dirname;
-const ALLOW = /^(app\.js|app\.css|fonts\.css|admin\.html|logo\.png|[a-z0-9]+\.webp)$/;
-app.get(['/', '/index.html'], wrap(async (req, res) => {
-  const html = fs.readFileSync(path.join(PUB, 'index.html'), 'utf8').replace('/*__WINES__*/[]', JSON.stringify(await products()).replace(/</g, '\\u003c'));
-  res.type('html').send(html);
+const ALLOW = /^(admin\.html|logo\.png|[a-z0-9-]+\.(html|css|js)|[a-z0-9]+\.webp)$/;
+const NOT_PUBLIC = /^(server|wines|reviews)\.js$/;
+/* the catalogue is read from the database, so prices and stock on every page are always current */
+app.get('/wines.js', wrap(async (req, res) => {
+  const list = (await products()).map(p => ({ id: p.id, img: p.img, name: p.name, type: p.type, region: String(p.grape || '').split(' · ')[0], grape: p.grape, year: p.year, price: p.price, mrp: p.mrp, abv: p.abv, notes: p.notes, pair: p.pairing, stock: p.stock, badge: p.badge }));
+  res.set({ 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' }).send('window.WINES=' + JSON.stringify(list).replace(/</g, '\u003c') + ';');
 }));
-/* only an allowlist of public files is served, so server code is never exposed */
+/* customer reviews live in the database, so every visitor sees the same ratings */
+const fmtDate = iso => new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+app.get('/reviews.js', wrap(async (req, res) => {
+  const out = {}; (await C.reviews.find({}).sort({ created: 1 }).limit(3000).toArray()).forEach(r => { (out[r.product_id] = out[r.product_id] || []).push({ name: r.name, stars: r.stars, text: r.text, date: fmtDate(r.created) }); });
+  res.set({ 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' }).send('window.REVIEWS=' + JSON.stringify(out).replace(/</g, '\u003c') + ';');
+}));
+app.get('/', (req, res) => res.set('Cache-Control', 'no-cache').sendFile(path.join(PUB, 'index.html')));
 app.get('/fonts/:f', (req, res, next) => { const f = req.params.f; const p = path.join(PUB, 'fonts', f); if (!/^[a-z0-9-]+\.woff2$/.test(f) || !fs.existsSync(p)) return next(); res.set('Cache-Control', 'public, max-age=31536000, immutable'); res.sendFile(p); });
+app.get('/img/photo/:f', (req, res, next) => { const f = req.params.f; const p = path.join(PUB, 'img', 'photo', f); if (!/^[a-z0-9-]+\.webp$/.test(f) || !fs.existsSync(p)) return next(); res.set('Cache-Control', 'public, max-age=86400'); res.sendFile(p); });
+/* only an allowlist of public files is served, so server code is never exposed */
 app.get(['/img/:f', '/:f'], (req, res, next) => {
-  const f = req.params.f; if (!ALLOW.test(f)) return next();
+  const f = req.params.f; if (!ALLOW.test(f) || NOT_PUBLIC.test(f)) return next();
   const c = [path.join(PUB, 'img', f), path.join(PUB, f)].filter(p => fs.existsSync(p));
   if (!c.length) return next();
-  res.set('Cache-Control', 'public, max-age=3600'); res.sendFile(c[0]);
+  res.set('Cache-Control', 'no-cache'); res.sendFile(c[0]);
 });
+
 
 app.get('/api/health', wrap(async (req, res) => { await db.command({ ping: 1 }); res.json({ ok: true, products: await C.products.countDocuments(), orders: await C.orders.countDocuments() }); }));
 app.get('/api/products', wrap(async (req, res) => res.json(await products())));
@@ -256,6 +268,16 @@ app.get('/api/notifications', auth, wrap(async (req, res) => {
   const uid = String(req.user._id);
   res.json((await C.notifications.find({ user_id: uid }).sort({ _id: -1 }).limit(30).toArray()).map(strip));
   await C.notifications.updateMany({ user_id: uid, read: false }, { $set: { read: true } });
+}));
+
+
+/* reviews: one per customer per wine, posting again updates it */
+app.post('/api/reviews', auth, wrap(async (req, res) => {
+  const b = req.body || {}, stars = Math.floor(+b.stars), text = clean(b.text, 600);
+  if (!(stars >= 1 && stars <= 5)) return bad(res, 'Choose a star rating from 1 to 5.');
+  if (!await C.products.findOne({ _id: clean(b.id, 40) })) return bad(res, 'That wine was not found.', 404);
+  await C.reviews.updateOne({ user_id: String(req.user._id), product_id: clean(b.id, 40) }, { $set: { name: req.user.name.split(' ')[0] + ' ' + (req.user.name.split(' ')[1] || '').charAt(0), stars, text, created: now() } }, { upsert: true });
+  res.json({ ok: true });
 }));
 
 /* contact */

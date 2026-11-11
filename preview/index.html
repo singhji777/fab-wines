@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab Wines: wine delivered to your door</title>
+<meta name="description" content="Nineteen reds, whites, rosés and ports from ₹3,200. Orders ship within 24 hours and delivery is free over ₹5,000.">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body data-page="home">
+<!--HEADER--><header><div class="wrap hd">
+  <a class="brand" href="index.html">Fab Wines</a>
+  <nav aria-label="Main"><a href="wines.html">Wines</a><a href="bundle.html">Three bottles</a><a href="pairing.html">Pairing</a><a href="delivery.html">Delivery</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+  <div class="right"><a class="cartlink" href="cart.html">Cart <b data-cart-count>0</b></a><a class="btn" href="wines.html">Order wine</a><button class="menu-btn" type="button" aria-label="Menu">☰</button></div>
+</div></header><!--/HEADER-->
+
+<main id="top">
+<section class="hero">
+  <div class="hero-word" aria-hidden="true">FAB WINES</div>
+  <div class="wrap hero-in">
+    <h1>Pour. Share. Linger.</h1>
+    <div class="pour">
+      <svg id="pourSvg" viewBox="0 0 900 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Wine poured from a bottle into a glass, then two glasses raised for a toast">
+        <defs>
+          <linearGradient id="wineG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8324f"/><stop offset="1" stop-color="#6e0e2a"/></linearGradient>
+          <linearGradient id="bottleG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0a1612"/><stop offset=".35" stop-color="#1d3a30"/><stop offset="1" stop-color="#07110d"/></linearGradient>
+          <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#d9c89c" stop-opacity=".28"/><stop offset="1" stop-color="#d9c89c" stop-opacity="0"/></radialGradient>
+          <clipPath id="bowl" clipPathUnits="userSpaceOnUse"><path d="M-62 -230C-64 -160 -42 -112 0 -106 42 -112 64 -160 62 -230Z"/></clipPath>
+          <g id="glassLines">
+            <path d="M-62 -230C-64 -160 -42 -112 0 -106 42 -112 64 -160 62 -230Z" fill="rgba(250,247,240,.05)" stroke="rgba(250,247,240,.9)" stroke-width="2.2"/>
+            <path d="M-48 -214C-50 -176 -39 -142 -19 -125" fill="none" stroke="#fff" stroke-opacity=".38" stroke-width="3" stroke-linecap="round"/>
+            <path d="M-2.6 -106L-2 -11H2L2.6 -106Z" fill="rgba(250,247,240,.85)"/>
+            <ellipse cx="0" cy="-6" rx="46" ry="7" fill="rgba(250,247,240,.12)" stroke="rgba(250,247,240,.9)" stroke-width="2"/>
+          </g>
+        </defs>
+        <ellipse cx="450" cy="195" rx="255" ry="160" fill="url(#glow)"/>
+        <g id="scene">
+          <ellipse cx="300" cy="343" rx="58" ry="6" fill="#000" opacity=".28"/>
+          <ellipse id="shB" cx="520" cy="343" rx="58" ry="6" fill="#000" opacity=".28"/>
+          <g id="gA" transform="translate(300 340)">
+            <g clip-path="url(#bowl)"><g id="wA"><rect id="wAr" x="-90" y="-168" width="180" height="170" fill="url(#wineG)"/><ellipse id="wAs" cx="0" cy="-168" rx="80" ry="4" fill="#e0526f" opacity=".95"/></g></g>
+            <use href="#glassLines"/>
+          </g>
+          <g id="gB" transform="translate(520 340)">
+            <g clip-path="url(#bowl)"><g id="wB"><rect x="-90" y="-168" width="180" height="170" fill="url(#wineG)"/><ellipse cx="0" cy="-168" rx="80" ry="4" fill="#e0526f" opacity=".95"/></g></g>
+            <use href="#glassLines"/>
+          </g>
+          <path id="stream" d="M0 0" fill="none" stroke="#b5233f" stroke-width="7" stroke-linecap="round" opacity="0"/>
+          <g id="bottle" transform="translate(640 88)">
+            <path d="M-9 0H9V62C9 86 28 92 28 120V246Q28 252 22 252H-22Q-28 252 -28 246V120C-28 92 -9 86 -9 62Z" fill="url(#bottleG)" stroke="rgba(250,247,240,.35)" stroke-width="1.2"/>
+            <rect x="-10" y="-2" width="20" height="40" rx="2" fill="#8f2438"/>
+            <rect x="-24" y="140" width="48" height="72" fill="#f3efe4"/>
+            <rect x="-20" y="144" width="40" height="64" fill="none" stroke="#b8a46f" stroke-width=".8"/>
+            <text x="0" y="172" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="15" fill="#16322c">FAB</text>
+            <text x="0" y="188" text-anchor="middle" font-family="Anton, Impact, sans-serif" font-size="8" letter-spacing="1.5" fill="#16322c">WINES</text>
+            <path d="M-18 126V238" stroke="#fff" stroke-opacity=".16" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <g id="spark" opacity="0" transform="translate(401 124)" stroke="#e9d9a8" stroke-width="2.5" stroke-linecap="round">
+            <path d="M0 -12V-28"/><path d="M10 -8L22 -20"/><path d="M-10 -8L-22 -20"/><path d="M14 2H28"/><path d="M-14 2H-28"/>
+          </g>
+        </g>
+      </svg>
+      <button class="pour-pause" id="pourPause" type="button">Pause</button>
+    </div>
+    <div class="cards">
+      <a class="card" href="wines.html"><h3>The cellar</h3><p>Nineteen reds, whites, rosés and ports from ₹3,200.</p><span class="go">Order wine ↗</span></a>
+      <a class="card" href="bundle.html"><h3>Three for ten</h3><p>Any three bottles, ten percent off, taken off in your cart.</p><span class="go">See bundle prices ↗</span></a>
+      <a class="card" href="contact.html"><h3>Not sure?</h3><p>Tell us the mood and we will point you to a bottle.</p><span class="go">Ask for help ↗</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="about"><div class="wrap">
+  <h2 class="mega">We don't just sell wine. We sell the evening.</h2>
+  <div class="collage">
+    <div class="panel tall"><img src="img/n1.webp" alt="Sassicaia 2018"></div>
+    <div class="copy">
+      <p class="lead">Our job is to put good bottles on the table and good people around it.</p>
+      <p>We keep the shelf short on purpose. Every bottle is easy to share, easy to talk about and worth opening on an ordinary evening.</p>
+      <a class="btn ghost" href="pairing.html">See what to pour ↗</a>
+    </div>
+    <div class="panel sm"><img src="img/n2.webp" alt="Tignanello 2018"><img src="img/b08.webp" alt="Cloudy Bay Sauvignon Blanc 2025"></div>
+  </div>
+</div></section>
+
+<section class="shelf" id="wines"><div class="wrap">
+  <h2 class="mega">The bottle is the main thing at the table.</h2>
+  <div class="tabs"><div id="tabs"><span>Wines</span></div><a class="link" href="bundle.html">Three bottles, ten percent off ↗</a></div>
+  <div class="show" id="show"></div>
+</div></section>
+
+<section class="band" id="pairing">
+  <div class="wrap">
+    <h2 class="sign">On the table tonight</h2>
+    <div class="band-row" aria-hidden="true"><img src="img/b10.webp" alt=""><img src="img/b16.webp" alt=""><img src="img/b09.webp" alt=""><img src="img/b06.webp" alt=""><img src="img/b03.webp" alt=""></div>
+    <div class="band-card">
+      <div><h2>The right bottle for any dinner</h2><p>Ribeye, lobster, paneer tikka or a cheese board: every wine here comes with the dishes it suits.</p></div>
+      <div class="circles"><a href="wines.html">Order</a><a href="bundle.html">Bundle</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="trio" id="three"><div class="wrap trio-in">
+  <div class="panel"><img src="img/b11.webp" alt="Faust Cabernet 2023"><img src="img/b14.webp" alt="Pine Ridge Cabernet 2023"><img src="img/b13.webp" alt="Chateau Buena Vista Cabernet 2022"></div>
+  <div>
+    <h2>Three bottles, ten percent off</h2>
+    <ul class="rows">
+      <li><span>Faust Cabernet</span><span>₹7,200</span></li>
+      <li><span>Pine Ridge Cabernet</span><span>₹6,600</span></li>
+      <li><span>Chateau Buena Vista Cabernet</span><span>₹5,800</span></li>
+      <li><span>Ten percent off</span><span>−₹1,960</span></li>
+      <li><span>Three bottles</span><b>₹17,640</b></li>
+    </ul>
+    <a class="btn" href="wines.html">Pick three bottles ↗</a>
+  </div>
+</div></section>
+
+<section class="cream"><div class="wrap">
+  <h2 class="mega">Dinner pairings</h2>
+  <div class="cream-grid">
+    <div><p>Five bottles from the range, each matched to what is on the table.</p><a class="link" href="wines.html">Order wine ↗</a></div>
+    <div class="panel"><img src="img/b10.webp" alt="Rombauer Chardonnay"><img src="img/b16.webp" alt="Far Niente Chardonnay"><img src="img/b09.webp" alt="Stag's Leap Artemis"><img src="img/b06.webp" alt="Caymus Cabernet"><img src="img/b03.webp" alt="Silver Oak Cabernet"></div>
+    <ul class="rows">
+      <li><div>Rombauer Chardonnay<br><span>Lobster, roast chicken, corn chowder</span></div><span>₹7,800</span></li>
+      <li><div>Far Niente Chardonnay<br><span>Crab cakes, creamy risotto</span></div><span>₹11,500</span></li>
+      <li><div>Stag's Leap Artemis<br><span>Grilled steak, aged gouda</span></div><span>₹12,500</span></li>
+      <li><div>Caymus Cabernet<br><span>Prime rib, mutton biryani</span></div><span>₹16,500</span></li>
+      <li><div>Silver Oak Cabernet<br><span>Ribeye, lamb chops, dark chocolate</span></div><span>₹18,500</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="facts" id="delivery"><div class="wrap">
+  <h2>Delivery <span>| Questions</span></h2>
+  <div class="fcards">
+    <div class="fc"><h3>Free delivery <b>₹5,000+</b></h3><p>Orders over ₹5,000 ship free, otherwise ₹250. Orders ship within 24 hours, packed upright. You pay on delivery by cash, UPI or card.</p></div>
+    <div class="fc"><h3>Adults only <b>21+</b></h3><p>Age is checked at delivery. To follow an order, choose Track an Order and enter your order number and phone number.</p></div>
+  </div>
+</div></section>
+</main>
+
+<!--FOOTER--><footer id="contact">
+  <div class="wrap">
+    <div class="ft">
+      <div><h4>Fab Wines</h4><a href="about.html">About us</a><a href="contact.html">Contact</a></div>
+      <div><h4>Shop</h4><a href="wines.html">Wines</a><a href="bundle.html">Three bottles</a><a href="cart.html">Cart</a></div>
+      <div><h4>Help</h4><a href="pairing.html">Pairing</a><a href="delivery.html">Delivery</a></div>
+      <div><h4>Letters from the cellar</h4><form class="nl"><input type="email" name="email" placeholder="Your email" aria-label="Email" required><button>Subscribe</button></form></div>
+    </div>
+    <div class="legal">© 2026 Fab Wines. Alcohol is for adults only. Please drink responsibly.</div>
+    <div class="owner-end"><div><b>Aditya Singh</b><span>Founder and owner, Fab Wines</span></div><a href="mailto:adityasingh11may@gmail.com">adityasingh11may@gmail.com</a></div>
+  </div>
+  <div class="foot-word" aria-hidden="true">Fab Wines</div>
+</footer><!--/FOOTER-->
+
+<script src="wines.js"></script>
+<script src="reviews.js"></script>
+<script src="site.js"></script>
+<script src="pour.js"></script>
+<script>
+(function(){
+  var W=window.WINES,type='All',i=0,list=W;
+  var fmt=function(n){return '₹'+new Intl.NumberFormat('en-IN').format(n)};
+  var tabs=document.getElementById('tabs'),show=document.getElementById('show');
+  ['All','Red','White','Rosé','Port'].forEach(function(t){var b=document.createElement('button');b.className='tab';b.textContent=t;b.dataset.t=t;b.setAttribute('aria-pressed',t==='All');tabs.appendChild(b)});
+  function paint(){
+    var w=list[i];if(!w)return;var abv=parseFloat(w.abv);
+    show.innerHTML='<div class="show-pic"><img src="'+w.img+'" alt="'+w.name+' bottle"></div><div><h3>'+w.name+'</h3><p class="where">'+w.type+' · '+w.region+'</p>'+window.Fab.ratingHtml(w.id,true)+'<p class="notes">'+w.notes+'</p>'
+     +'<div class="stats"><div><span>Alcohol</span><b>'+(isNaN(abv)?w.abv:abv+'<small>%</small>')+'</b></div><div><span>Vintage</span><b>'+w.year+'</b></div><div><span>You save</span><b>'+Math.round((1-w.price/w.mrp)*100)+'<small>%</small></b></div></div>'
+     +'<div class="buy"><span class="p">'+fmt(w.price)+'<s>'+fmt(w.mrp)+'</s></span><button class="btn" data-add="'+w.id+'">Add to cart</button><a class="link" href="wine.html?id='+w.id+'">Details</a></div></div>'
+     +'<div class="nav2"><span>'+(i+1)+' of '+list.length+'</span><button class="arr" data-d="-1" aria-label="Previous wine">←</button><button class="arr" data-d="1" aria-label="Next wine">→</button></div>';
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.tab');if(t){type=t.dataset.t;list=W.filter(function(w){return type==='All'||w.type===type});i=0;[].forEach.call(tabs.querySelectorAll('.tab'),function(b){b.setAttribute('aria-pressed',b.dataset.t===type)});paint();return}
+    var a=e.target.closest('.arr');if(a){i=(i+ +a.dataset.d+list.length)%list.length;paint()}
+  });
+  paint();
+})();
+</script>
+</body>
+</html>

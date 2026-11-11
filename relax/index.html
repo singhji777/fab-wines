@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fab Wines: pour something fabulous</title>
+<meta name="description" content="Nineteen reds, whites, rosés and ports from ₹3,200. Orders ship within 24 hours and delivery is free over ₹5,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Arimo:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="relax.css">
+</head>
+<body data-page="home">
+<section class="rx" id="rx" data-t="white">
+  <div class="rx-bg" aria-hidden="true"></div>
+  <div class="rx-wipe" id="wipe" aria-hidden="true"></div>
+  <!--HEADER--><header class="rx-head"><div class="rx-hd">
+  <a class="rx-logo" href="index.html" aria-label="Fab Wines home"><b>FW</b></a>
+  <nav class="rx-nav" aria-label="Main"><a href="wines.html">Wines</a><a href="bundle.html">Three bottles</a><a href="pairing.html">Pairing</a><a href="delivery.html">Delivery</a><a href="about.html">About us</a><a href="contact.html">Contact</a></nav>
+  <button class="menu-btn" type="button" aria-label="Menu"><span></span><span></span></button>
+  <a class="rx-cart" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M6 8h12l1 13H5zM9 8a3 3 0 0 1 6 0" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M6 8h12l1 13H5z"/></svg><span data-cart-total>₹0</span><b data-cart-count class="sr-only">0</b></a>
+</div></header><!--/HEADER-->
+  <div class="rx-main">
+    <div class="rx-copy" id="copy">
+      <h1>Pour something fabulous, and linger a while</h1>
+      <p class="desc" id="desc"></p>
+      <a class="rx-view" id="view" href="wines.html">View more</a>
+    </div>
+    <div class="rx-strip">
+      <img class="th" id="thumb" src="img/photo/harvest.webp" alt="" width="152" height="110">
+      <div><h2>Three bottles, ten percent off</h2><p>Pick any three bottles and the saving comes off in your cart, with no code to enter.</p></div>
+      <a class="circle" href="bundle.html">Read more</a>
+    </div>
+    <div class="rx-col" id="col">
+      <div class="rx-track" id="track"></div>
+      <button class="rx-next" id="next" type="button" aria-label="Show the next wine">Next</button>
+    </div>
+  </div>
+</section>
+
+<main class="rx-after">
+  <section class="sec"><div class="wrap head-row"><h2 class="h-xl">From the cellar<br>to your table</h2>
+    <div class="arrows" data-for="rail1" style="display:flex"><button type="button" data-d="-1" aria-label="Previous wines">←</button><span class="dots" aria-hidden="true"></span><button type="button" data-d="1" aria-label="Next wines">→</button></div></div>
+    <div class="rail" id="rail1"></div></section>
+  <section class="sec book"><div class="wrap">
+    <div class="head-row"><h2 class="h-xl">Build a trio, save ten percent</h2><a class="circle" href="bundle.html">View<br>all</a></div>
+    <div class="grid3" id="trios"></div>
+  </div></section>
+</main>
+<!--FOOTER--><footer>
+  <div class="wrap">
+    <div class="ft">
+      <div><h4>Fab Wines</h4><a href="about.html">About us</a><a href="contact.html">Contact</a></div>
+      <div><h4>Shop</h4><a href="wines.html">Wines</a><a href="bundle.html">Three bottles</a><a href="cart.html">Cart</a></div>
+      <div><h4>Help</h4><a href="pairing.html">Pairing</a><a href="delivery.html">Delivery and questions</a></div>
+      <div><h4>Letters from the cellar</h4><form class="nl"><input type="email" name="email" placeholder="Your email" aria-label="Email" required><button class="btn sm">Subscribe</button></form></div>
+    </div>
+    <div class="legal"><span>© 2026 Fab Wines. Alcohol is for adults only. Please drink responsibly.</span><a href="credits.html">Photographs via Wikimedia Commons</a></div>
+    <div class="owner-end"><div><b>Aditya Singh</b><span>Founder and owner, Fab Wines</span></div><a href="mailto:adityasingh11may@gmail.com">adityasingh11may@gmail.com</a></div>
+  </div>
+  <div class="foot-word" aria-hidden="true">Fab Wines</div>
+</footer><!--/FOOTER-->
+<script src="wines.js"></script>
+<script src="reviews.js"></script>
+<script src="site.js"></script>
+<script src="relax.js"></script>
+</body>
+</html>
