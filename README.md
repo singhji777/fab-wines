@@ -4,7 +4,9 @@ Full-stack wine shop: storefront, accounts, cart, checkout (pay on delivery), or
 
 **Stack:** Node.js + Express + **Postgres (Neon)**, plain HTML/CSS/JS front end. Deployed on Vercel.
 
-**Live site:** LIVE_LINK_PENDING
+**Live site:** [https://fab-wines.vercel.app](https://fab-wines.vercel.app)
+
+[![Fab Wines by Aditya Singh](docs/screenshot.png)](https://fab-wines.vercel.app)
 
 ## Run it locally
 1. Create a free Postgres database at [neon.com](https://neon.com) and copy its connection string.
