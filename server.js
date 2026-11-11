@@ -121,7 +121,16 @@ app.get('/reviews.js', wrap(async (req, res) => {
   const out = {}; (await C.reviews.find({}).sort({ created: 1 }).limit(3000).toArray()).forEach(r => { (out[r.product_id] = out[r.product_id] || []).push({ name: r.name, stars: r.stars, text: r.text, date: fmtDate(r.created) }); });
   res.set({ 'Content-Type': 'text/javascript; charset=utf-8', 'Cache-Control': 'no-store' }).send('window.REVIEWS=' + JSON.stringify(out).replace(/</g, '\u003c') + ';');
 }));
-app.get('/', (req, res) => res.set('Cache-Control', 'no-cache').sendFile(path.join(PUB, 'index.html')));
+/* pages carry the public address of the shop, so search engines and link previews get absolute URLs */
+const siteOf = req => (process.env.SITE_URL || (req.get('x-forwarded-proto') || req.protocol) + '://' + req.get('host')).replace(/\/+$/, '');
+const page = (req, res, file) => { const html = fs.readFileSync(path.join(PUB, file), 'utf8').split('__SITE__').join(siteOf(req)); res.set('Cache-Control', 'no-cache').type('html').send(html); };
+app.get('/', (req, res) => page(req, res, 'index.html'));
+app.get('/robots.txt', (req, res) => res.type('text/plain').send('User-agent: *\nAllow: /\nDisallow: /admin.html\nDisallow: /account.html\nDisallow: /checkout.html\nDisallow: /cart.html\nDisallow: /api/\n\nSitemap: ' + siteOf(req) + '/sitemap.xml\n'));
+app.get('/sitemap.xml', wrap(async (req, res) => {
+  const site = siteOf(req), pages = ['', 'wines.html', 'bundle.html', 'pairing.html', 'delivery.html', 'about.html', 'contact.html'];
+  const urls = pages.map(p => site + '/' + p).concat((await products()).map(w => site + '/wine.html?id=' + encodeURIComponent(w.id)));
+  res.type('application/xml').send('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls.map(u => '<url><loc>' + u.replace(/&/g, '&amp;') + '</loc></url>').join('\n') + '\n</urlset>\n');
+}));
 app.get('/fonts/:f', (req, res, next) => { const f = req.params.f; const p = path.join(PUB, 'fonts', f); if (!/^[a-z0-9-]+\.woff2$/.test(f) || !fs.existsSync(p)) return next(); res.set('Cache-Control', 'public, max-age=31536000, immutable'); res.sendFile(p); });
 app.get('/img/photo/:f', (req, res, next) => { const f = req.params.f; const p = path.join(PUB, 'img', 'photo', f); if (!/^[a-z0-9-]+\.webp$/.test(f) || !fs.existsSync(p)) return next(); res.set('Cache-Control', 'public, max-age=86400'); res.sendFile(p); });
 /* only an allowlist of public files is served, so server code is never exposed */
@@ -129,6 +138,7 @@ app.get(['/img/:f', '/:f'], (req, res, next) => {
   const f = req.params.f; if (!ALLOW.test(f) || NOT_PUBLIC.test(f)) return next();
   const c = [path.join(PUB, 'img', f), path.join(PUB, f)].filter(p => fs.existsSync(p));
   if (!c.length) return next();
+  if (/\.html$/.test(f) && f !== 'admin.html') return page(req, res, path.relative(PUB, c[0]));
   res.set('Cache-Control', 'no-cache'); res.sendFile(c[0]);
 });
 

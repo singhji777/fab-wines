@@ -1,4 +1,4 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
+  "routes": [{ "src": "/(.*)", "dest": "/api/index.js" }],
   "functions": { "api/index.js": { "includeFiles": "public/**", "maxDuration": 30 } }
 }
