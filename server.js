@@ -7,11 +7,10 @@ try { fs.readFileSync(require('path').join(__dirname, '.env'), 'utf8').split(/\r
 const express = require('express');
 const crypto = require('crypto');
 const path = require('path');
-const { MongoClient, ObjectId } = require('mongodb');
+const dbm = require('./db');
 
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017';
-const MONGODB_DB = process.env.MONGODB_DB || 'fabwines';
+const DATABASE_URL = process.env.DATABASE_URL || '';
 const ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'adityasingh11may@gmail.com').toLowerCase();
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'FabAdmin@2026';
 
@@ -29,7 +28,7 @@ const validEmail = e => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
 const validPhone = p => /^[+0-9][0-9 ]{8,14}$/.test(p);
 const age = dob => { const d = new Date(dob); if (isNaN(d)) return 0; const n = new Date(); let a = n.getFullYear() - d.getFullYear(); if (n < new Date(n.getFullYear(), d.getMonth(), d.getDate())) a--; return a; };
 const MIN_AGE = 21, FREE_DELIVERY = 5000, DELIVERY_FEE = 250;
-const oid = x => { try { return new ObjectId(String(x)); } catch { return null; } };
+const oid = x => (typeof x === 'string' && /^[a-z0-9]{1,40}$/i.test(x)) ? x : null;
 const pub = u => u && { id: String(u._id), name: u.name, email: u.email, phone: u.phone, address: u.address, city: u.city, pincode: u.pincode, role: u.role };
 const strip = o => { if (!o) return o; const { _id, ...r } = o; return { id: _id, ...r }; };
 
@@ -61,15 +60,13 @@ const SEED = [
 ];
 
 async function connect() {
-  const client = new MongoClient(MONGODB_URI, { serverSelectionTimeoutMS: 6000 });
-  try { await client.connect(); await client.db('admin').command({ ping: 1 }); }
+  if (!DATABASE_URL) { const m = 'DATABASE_URL is not set. Put your Neon connection string in the .env file (see .env.example).'; if (process.env.VERCEL) throw new Error(m); console.error('\n' + m + '\n'); process.exit(1); }
+  try { db = await dbm.connect(DATABASE_URL); Object.assign(C, db.C); }
   catch (e) {
-    console.error('\nCould not connect to MongoDB at ' + MONGODB_URI.replace(/\/\/[^@]*@/, '//***@') + '\n  ' + e.message + '\n\nFix: start MongoDB (the "MongoDB" Windows service, or run mongod), or set MONGODB_URI to your Atlas connection string.\n');
+    console.error('\nCould not connect to the database.\n  ' + e.message + '\n\nCheck DATABASE_URL in your .env file.\n');
     if (process.env.VERCEL) throw e;
     process.exit(1);
   }
-  db = client.db(MONGODB_DB);
-  ['users', 'products', 'orders', 'wishlist', 'coupons', 'notifications', 'enquiries', 'subscribers', 'reviews', 'meta'].forEach(n => { C[n] = db.collection(n); });
   await C.users.createIndex({ email: 1 }, { unique: true });
   await C.orders.createIndex({ user_id: 1 }); await C.orders.createIndex({ created: -1 });
   await C.wishlist.createIndex({ user_id: 1, product_id: 1 }, { unique: true });
@@ -136,7 +133,7 @@ app.get(['/img/:f', '/:f'], (req, res, next) => {
 });
 
 
-app.get('/api/health', wrap(async (req, res) => { await db.command({ ping: 1 }); res.json({ ok: true, products: await C.products.countDocuments(), orders: await C.orders.countDocuments() }); }));
+app.get('/api/health', wrap(async (req, res) => { await db.ping(); res.json({ ok: true, products: await C.products.countDocuments(), orders: await C.orders.countDocuments() }); }));
 app.get('/api/products', wrap(async (req, res) => res.json(await products())));
 app.get('/api/coupons', wrap(async (req, res) => res.json((await C.coupons.find({ active: true }).toArray()).map(c => ({ code: c._id, pct: c.pct, min: c.min, note: c.note })))));
 
@@ -350,7 +347,7 @@ function openBrowser(port) {
   require('child_process').exec(cmd, () => {});
 }
 function listen(port, tries) {
-  const srv = app.listen(port, () => { openBrowser(port); console.log('\nFab Wines is running (MongoDB: ' + MONGODB_DB + ').\n  Shop:  http://localhost:' + port + '\n  Owner: http://localhost:' + port + '/admin.html\n'); });
+  const srv = app.listen(port, () => { openBrowser(port); console.log('\nFab Wines is running (database: Neon Postgres).\n  Shop:  http://localhost:' + port + '\n  Owner: http://localhost:' + port + '/admin.html\n'); });
   srv.on('error', e => { if (e.code === 'EADDRINUSE' && tries > 0) { console.log('Port ' + port + ' is busy, trying ' + (port + 1) + '...'); listen(port + 1, tries - 1); } else { console.error('Could not start the server:', e.message); process.exit(1); } });
 }
 /* on Vercel the app runs as a serverless function; anywhere else it listens on a port */
@@ -363,7 +360,7 @@ if (process.env.VERCEL) {
 } else
 connect().then(async () => {
   if (process.argv.includes('--seed') || process.argv.includes('--reset-catalogue')) {
-    console.log('\nDatabase "' + MONGODB_DB + '" is ready:\n  wines: ' + await C.products.countDocuments() + '\n  coupons: ' + await C.coupons.countDocuments() + '\n  owner account: ' + ADMIN_EMAIL + '\n');
+    console.log('\nDatabase is ready:\n  wines: ' + await C.products.countDocuments() + '\n  coupons: ' + await C.coupons.countDocuments() + '\n  owner account: ' + ADMIN_EMAIL + '\n');
     process.exit(0);
   }
   listen(+PORT, 10);

@@ -2,24 +2,19 @@
 
 Full-stack wine shop: storefront, accounts, cart, checkout (pay on delivery), order tracking, wishlist, coupons, rewards, notifications and an owner dashboard.
 
-**Stack:** Node.js + Express + **MongoDB**, plain HTML/CSS/JS front end.
+**Stack:** Node.js + Express + **Postgres (Neon)**, plain HTML/CSS/JS front end. Deployed on Vercel.
 
-## 1. Start MongoDB
-- **Local MongoDB (Windows):** it runs as the "MongoDB" service after installing MongoDB Community Server. If not, open Services and start "MongoDB", or run `mongod`.
-- **MongoDB Atlas (cloud):** copy your connection string and put it in `.env` (see below).
+**Live site:** LIVE_LINK_PENDING
 
-## 2. Run the shop
-1. Open the `fabwines` folder in VS Code (the one containing `server.js`).
-2. Copy `.env.example` to `.env`, then set `MONGODB_URI` (default `mongodb://127.0.0.1:27017` works for local MongoDB) and `ADMIN_PASSWORD`.
-3. Terminal: `npm install` then `npm start`. (If PowerShell says "scripts is disabled", use a Command Prompt terminal or `npm.cmd`.)
-4. Open the address printed (http://localhost:3000). Owner dashboard: `/admin.html`.
+## Run it locally
+1. Create a free Postgres database at [neon.com](https://neon.com) and copy its connection string.
+2. Copy `.env.example` to `.env`, set `DATABASE_URL` and `ADMIN_PASSWORD`.
+3. `npm install` then `npm start`, and open http://localhost:3000. Owner dashboard: `/admin.html`.
 
-**Easiest on Windows:** double-click `START_FAB_WINES.bat`. It installs Node.js and MongoDB if missing, creates the settings file, loads the wines into MongoDB, starts the shop and opens your browser. (`npm run go` does the same start-and-open on any computer.)
+The first start creates the tables and loads 19 sample wines, 3 coupons and the owner account. `npm run seed` loads them without starting the shop; `npm run seed:reset` reloads only the sample wines and coupons.
 
-The first start creates the database `fabwines` with 19 sample wines, 3 coupons and your owner account. Do not open `index.html` directly or use Live Server; the shop needs the server.
-
-## Loading the data into MongoDB
-Starting the shop for the first time loads everything automatically (19 wines, 3 coupons, your owner account). To load it without starting the shop run `npm run seed`. To wipe and reload only the sample wines and coupons (orders and customers are kept) run `npm run seed:reset`.
+## Deploy on Vercel
+Import the repo, add the environment variables `DATABASE_URL`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` and `JWT_SECRET`, and deploy. `vercel.json` runs the server as a serverless function.
 
 ## What works
 - Age gate, 21+ sign-up, login (scrypt passwords, signed tokens)
@@ -29,8 +24,8 @@ Starting the shop for the first time loads everything automatically (19 wines, 3
 - Notifications, rewards points, profile and password change, customer care form, newsletter
 - Owner dashboard: sales chart, best sellers, low stock, order status updates, edit price/MRP/stock/visibility, add wines, customers, messages
 
-## Collections
-users, products, orders, wishlist, coupons, notifications, enquiries, subscribers, meta. Health check: `/api/health`.
+## Tables
+One table per collection (`c_users`, `c_products`, `c_orders`, `c_wishlist`, `c_coupons`, `c_notifications`, `c_enquiries`, `c_subscribers`, `c_reviews`, `c_meta`), each holding a JSON document. Stock is taken with row locks, so a bottle can never be oversold. Health check: `/api/health`.
 
 ## Before real selling
 - Prices, MRPs, stock and notes are sample data. Edit them in the dashboard.
@@ -39,4 +34,4 @@ users, products, orders, wishlist, coupons, notifications, enquiries, subscriber
 - Bottle photos come from other stores. Replace with photos you own.
 
 ## Deploy
-Docker or Render (`render.yaml`). Set `MONGODB_URI` (Atlas), `ADMIN_PASSWORD`, `JWT_SECRET` as environment variables.
+Docker or Render (`render.yaml`). Set `DATABASE_URL` (Neon), `ADMIN_PASSWORD`, `JWT_SECRET` as environment variables.
