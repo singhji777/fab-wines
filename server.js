@@ -65,6 +65,7 @@ async function connect() {
   try { await client.connect(); await client.db('admin').command({ ping: 1 }); }
   catch (e) {
     console.error('\nCould not connect to MongoDB at ' + MONGODB_URI.replace(/\/\/[^@]*@/, '//***@') + '\n  ' + e.message + '\n\nFix: start MongoDB (the "MongoDB" Windows service, or run mongod), or set MONGODB_URI to your Atlas connection string.\n');
+    if (process.env.VERCEL) throw e;
     process.exit(1);
   }
   db = client.db(MONGODB_DB);
@@ -352,6 +353,14 @@ function listen(port, tries) {
   const srv = app.listen(port, () => { openBrowser(port); console.log('\nFab Wines is running (MongoDB: ' + MONGODB_DB + ').\n  Shop:  http://localhost:' + port + '\n  Owner: http://localhost:' + port + '/admin.html\n'); });
   srv.on('error', e => { if (e.code === 'EADDRINUSE' && tries > 0) { console.log('Port ' + port + ' is busy, trying ' + (port + 1) + '...'); listen(port + 1, tries - 1); } else { console.error('Could not start the server:', e.message); process.exit(1); } });
 }
+/* on Vercel the app runs as a serverless function; anywhere else it listens on a port */
+if (process.env.VERCEL) {
+  let ready;
+  module.exports = (req, res) => {
+    ready = ready || connect();
+    ready.then(() => app(req, res)).catch(e => { ready = null; console.error(e.message); res.statusCode = 503; res.setHeader('content-type', 'application/json'); res.end(JSON.stringify({ error: 'The shop is temporarily unavailable. Please try again shortly.' })); });
+  };
+} else
 connect().then(async () => {
   if (process.argv.includes('--seed') || process.argv.includes('--reset-catalogue')) {
     console.log('\nDatabase "' + MONGODB_DB + '" is ready:\n  wines: ' + await C.products.countDocuments() + '\n  coupons: ' + await C.coupons.countDocuments() + '\n  owner account: ' + ADMIN_EMAIL + '\n');
